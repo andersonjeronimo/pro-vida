@@ -1,0 +1,48 @@
+<div class="collapse bg-faded" id="navbarHeader">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 py-4">
+                <h4 class="text-muted">Central de Mídia Rede Pró-Vida</h4>
+
+                <ul class="list-unstyled">
+                    <li routerLinkActive="active"><a href="https://www.facebook.com/associacaoguadalupe/" target="blank" class="text-muted"><i class="fa fa-facebook-official fa-3x"></i> Página no Facebook</a></li>
+                    <li routerLinkActive="active"><a href="https://www.youtube.com/user/associacaoguadalupe" target="blank" class="text-muted"><i class="fa fa-youtube-square fa-3x"></i> Canal no Youtube</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4 py-4">
+                <h4 class="text-muted">Contato</h4>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-envelope-o fa-2x" aria-hidden="false"></i> consolimaria@gmail.com</li>
+                    <li><i class="fa fa-phone-square fa-2x" aria-hidden="true"></i> (12) 3341-8536 / 98192-7401.</li>
+                    <li><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i> Av. Princesa Isabel, 1235, CEP 12211-620, Santana,
+                        São José dos Campos/SP.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar navbar-inverse bg-inverse">
+    <div class="container d-flex justify-content-between">
+
+        <a routerLink="" class="nav-link" routerLinkActive="active"><i class="fa fa-institution fa-3x"></i> Home</a>
+        <a routerLink="/livros" class="nav-link" routerLinkActive="active"><i class="fa fa-book fa-3x"></i> Biblioteca</a>
+        <a routerLink="/audios" class="nav-link" routerLinkActive="active"><i class="fa fa-music fa-3x"></i> Áudios</a>
+        <a routerLink="/videos" class="nav-link" routerLinkActive="active"><i class="fa fa-film fa-3x"></i> Vídeos</a>
+        <a routerLink="/imagens" class="nav-link" routerLinkActive="active"><i class="fa fa-camera fa-3x"></i> Imagens</a>
+        <a routerLink="/artigos" class="nav-link" routerLinkActive="active"><i class="fa fa-file-text fa-3x"></i> Artigos</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader"
+            aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+
+    </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<footer class="text-muted">
+    <div class="container">
+        <p>Rede Pró-Vida &copy; 2017</p>
+    </div>
+</footer>

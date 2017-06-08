@@ -6,10 +6,10 @@ module.exports = function (app) {
         //.post(drive.create)
 
 
-    app.route('/api/files/:fileId')
+    app.route('/api/files/:id')
         .get(drive.read);
         //.put(drive.update)
         //.delete(drive.delete);
 
-    app.param('fileId', drive.file_by_id);
+    //app.param('fileId', drive.get_id);
 };

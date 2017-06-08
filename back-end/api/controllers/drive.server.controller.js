@@ -3,26 +3,39 @@ var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
+var mime = require('mime');
+
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/drive-nodejs-quickstart.json
-var SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+var SCOPES = [
+    'https://www.googleapis.com/auth/drive.metadata',
+    'https://www.googleapis.com/auth/drive.photos.readonly',
+    //'https://www.googleapis.com/auth/drive.readonly',
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/drive.file'
+];
+
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quickstart.json';
 
-exports.read = function (req, res, next) {
-
+exports.get_id = function (req, res, next) {
+    console.log(req.params.id);
+    return req.params.id;
 };
 
-exports.file_by_id = function (req, res, next, id) {
-    //Register.findOne({ _id: id }, function (err, register) {
-    //	if (err) {
-    //		return next(err);
-    //	} else {
-    //		req.register = register;
-    //		next();
-    //	}
-    //});
+exports.read = function (req, res, next) {
+    // Load client secrets from a local file.
+    fs.readFile('./api/controllers/client_secret.json', function processClientSecrets(err, content) {
+        if (err) {
+            //console.log('Error loading client secret file: ' + err);
+            //return;
+            return next('Error loading client secret file: ' + err);
+        }
+        // Authorize a client with the loaded credentials, then call the
+        // Drive API.
+        authorize(JSON.parse(content), getFile, req, res, next);
+    });
 };
 
 exports.read_files = function (req, res, next) {
@@ -123,7 +136,7 @@ function listFiles(auth, req, res, next) {
     var files = [];
     service.files.list({
         auth: auth,
-        pageSize: 10,
+        //pageSize: 10,
         fields: "nextPageToken, files(id, name)"
     }, function (err, response) {
         if (err) {
@@ -138,4 +151,54 @@ function listFiles(auth, req, res, next) {
         }
     });
 
+}
+
+/**
+ * Download a file from Google Drive.
+ *
+ * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+ */
+function getFile(auth, req, res, next) {
+    var drive = google.drive('v3');
+    //var file = null;
+    var fileId = req.params.id;
+
+    drive.files.get({
+        auth: auth,
+        fileId: fileId
+    }, function (err, metadata) {
+        if (err) {
+            console.error('The API returned an error: ' + err);
+            return next('The API returned an error: ' + err);
+            //return process.exit();
+        }
+
+        console.log('Downloading %s...', metadata.name);
+
+        var file = '/tmp/' + metadata.name;
+
+        //var dest = fs.createReadStream(file);
+        var dest = fs.createWriteStream(file);
+
+        var _mimetype = mime.lookup(file);
+        console.log(_mimetype);
+
+        drive.files.get({
+            auth: auth,
+            fileId: fileId,
+            alt: 'media',
+            mimeType: _mimetype
+        }).on('error', function (err) {
+            console.log('Error downloading file', err);
+            process.exit();
+        }).pipe(dest);
+
+        dest.on('finish', function () {
+            console.log('Downloaded %s!', metadata.name);
+            process.exit();
+        }).on('error', function (err) {
+            console.log('Error writing file', err);
+            process.exit();
+        });
+    });
 }

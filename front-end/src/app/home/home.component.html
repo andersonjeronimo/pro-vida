@@ -1,5 +1,5 @@
 <section class="jumbotron">
-  <div class="container">
+  <div class="container container-fluid">
     <h1 class="jumbotron-heading text-center">Home - Google Drive Files</h1>
 
     <div class="row">
@@ -7,7 +7,7 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Busca por nome de arquivo ou diretório">
           <span class="input-group-btn">
-        <button class="btn btn-outline-success" type="button">Buscar</button>
+        <button class="btn btn-outline-success" type="button"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
       </span>
         </div>
       </div>
@@ -16,31 +16,33 @@
     <br>
 
     <p class="lead text-muted">Lista dos arquivos disponíveis.</p>
-    
-      <table class="table table-hover table-inverse">
-      <thead class="thead-inverse">
-        <tr>
-          <th>Nome do Arquivo</th>
-          <th>ID do Arquivo</th>
-          <th>Ação #1</th>          
-          <th>Ação #2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let file of files">
-          <th scope="row">{{file.name}}</th>
-          <td>{{file.id}}</td>
-          <td>
-            <button class="btn btn-outline-primary">Open file/directory</button>            
-          </td>          
-          <td>            
-            <button class="btn btn-outline-success">Download</button>
-          </td>          
-        </tr>        
-      </tbody>
-    </table>
 
-       
+    <div class="row">
+      <table class="table table-fixed table-hover table-inverse table-responsive">
+        <thead class="thead-inverse">
+          <tr>
+            <th class="col-lg-3">Nome do Arquivo</th>
+            <th class="col-lg-5">ID do Arquivo</th>
+            <th class="col-lg-2">Ação #1</th>
+            <th class="col-lg-2">Ação #2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <div style="height:70px" *ngFor="let file of files">
+            <tr>
+              <td class="col-lg-3">{{file.name}}</td>
+              <td class="col-lg-5">{{file.id}}</td>
+              <td class="col-lg-2">
+                <button (click)="getFileById(file.id)" class="btn btn-outline-primary">Open File</button>
+              </td>
+              <td class="col-lg-2">
+                <button class="btn btn-outline-success">Download</button>
+              </td>
+            </tr>
+          </div>
 
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>

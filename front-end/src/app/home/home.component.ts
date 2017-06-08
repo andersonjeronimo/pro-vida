@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   errorMessage: string;
   files: File[];
+  file: File;
 
   mode = 'Observable';
 
@@ -28,6 +29,13 @@ export class HomeComponent implements OnInit {
     this.service.getDriveFiles()
       .subscribe(
       files => this.files = files,
+      error => this.errorMessage = <any>error);
+  }
+
+  getFileById(id: number) {    
+    this.service.getDriveFileById(id)
+      .subscribe(
+      file => this.file = file,
       error => this.errorMessage = <any>error);
   }
 

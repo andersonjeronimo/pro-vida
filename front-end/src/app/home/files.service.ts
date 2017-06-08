@@ -18,10 +18,22 @@ export class FilesService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+
+  getDriveFileById(id: number): Observable<File> {    
+    console.log(this.filesUrl + '/' + id);
+    return this.http.get(this.filesUrl + '/' + id)
+      .map(this.extractData2)
+      .catch(this.handleError);
+  }
   
   private extractData(res: Response) {
     let body = res.json();
     return body;//.data || {};
+  }
+
+  private extractData2(res: Response) {
+    let body = res.json();
+    return body.data || {};
   }
   
   private handleError(error: Response | any) {

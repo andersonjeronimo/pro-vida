@@ -1,0 +1,51 @@
+<section class="jumbotron">
+  <div class="container container-fluid">
+    <h1 class="jumbotron-heading text-center">Biblioteca</h1>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Busca por titulo, autor, editora...">
+          <span class="input-group-btn">
+        <button class="btn btn-outline-success" type="button"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+      </span>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <p class="lead text-muted">Lista dos livros disponíveis.</p>
+
+    <div class="row">
+      <table class="table table-fixed table-hover table-inverse table-responsive">
+        <thead class="thead-inverse">
+          <tr>
+            <th class="col-lg-1">ID</th>
+            <th class="col-lg-3">Titulo</th>
+            <th class="col-lg-2">Autor</th>            
+            <th class="col-lg-2">Editora</th>
+            <th class="col-lg-2">Ação #1</th>
+            <th class="col-lg-2">Ação #2</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr *ngFor="let book of books">
+              <td class="col-lg-1">{{book.Id}}</td>
+              <td class="col-lg-3">{{book.Title}}</td>
+              <td class="col-lg-2">{{book.Author}}</td>              
+              <td class="col-lg-2">{{book.Publishing}}</td>
+              <td class="col-lg-2">
+                <button (click)="getBookById(book.Id)" class="btn btn-outline-primary">Open File</button>
+              </td>
+              <td class="col-lg-2">
+                <button class="btn btn-outline-success">Download</button>
+              </td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>    
+  </div>
+</section>

@@ -32,11 +32,12 @@ export class BooksComponent implements OnInit {
       error => this.errorMessage = <any>error);
   }
 
-  getFileById(id: number) {
-    this.service.getBookById(id)
-      .subscribe(
-      book => this.book = book,
-      error => this.errorMessage = <any>error);
+  getBookById(id: string) {
+    window.alert(id);
+    // this.service.getBookById(id)
+    //   .subscribe(
+    //   book => this.book = book,
+    //   error => this.errorMessage = <any>error);
   }
 
 }

@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   constructor(private service: FilesService) { }
 
   ngOnInit() {
-    this.getFiles();
+    //this.getFiles();
   }
 
   getFiles() {

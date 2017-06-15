@@ -1,4 +1,3 @@
-var config = require('./config');
 var express = require('express');
 var morgan = require('morgan');
 var compress = require('compression');
@@ -9,20 +8,22 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var config = require('./config');
+
 module.exports = function () {
 
-    var app = express();
+    var server = express();
 
     // uncomment after placing your favicon in /public
-    //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+    //server.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
     if (process.env.NODE_ENV === 'development') {
-        app.use(morgan('dev'));
+        server.use(morgan('dev'));
     } else if (process.env.NODE_ENV === 'production') {
-        app.use(compress());
+        server.use(compress());
     }
 
-    app.all('*', function (req, res, next) {
+    server.all('*', function (req, res, next) {
         res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -30,21 +31,26 @@ module.exports = function () {
         next();
     });
 
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(cookieParser());
-    app.use(methodOverride());
+    server.use(bodyParser.json());
+    server.use(bodyParser.urlencoded({ extended: true }));
+    server.use(cookieParser());
+    server.use(methodOverride());
 
-    app.use(session({
+    server.use(session({
         saveUninitialized: true,
         resave: true,
         secret: config.sessionSecret
-    }));
+    }));   
+
+    server.use(express.static(path.join(__dirname, '../public')));
+
+    //======================================================
+
+    //1-Conectar com banco de dados...
+    require('../api/database/mongoose.database.js')();
     
-    require('../api/routes/file.server.routes')(app);
-    require('../api/routes/book.server.routes')(app);
+    //2-Configurar rotas
+    require('../api/routes/book.routes')(server);
 
-    app.use(express.static(path.join(__dirname, '../public')));    
-
-    return app;
+    return server;
 }

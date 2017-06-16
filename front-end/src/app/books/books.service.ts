@@ -22,7 +22,7 @@ export class BooksService {
   //https://stackoverflow.com/questions/34475523/how-to-pass-url-arguments-query-string-to-a-http-request-on-angular-2
   //https://angular.io/docs/ts/latest/api/http/index/Http-class.html
 
-  getBookById(id: number): Observable<Book> {
+  getBookById(id: string): Observable<Book> {
     console.log(this.booksUrl + '/' + id);
     return this.http.get(this.booksUrl + '/' + id)
       .map(this.extractData)

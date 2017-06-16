@@ -48,8 +48,11 @@ module.exports = function () {
 
     //1-Conectar com banco de dados...
     require('../api/database/mongoose.database.js')();
+
+    //2-Criar modelos
+    //require('../api/models/book.model');
     
-    //2-Configurar rotas
+    //3-Configurar rotas
     require('../api/routes/book.routes')(server);
 
     return server;

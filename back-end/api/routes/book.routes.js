@@ -1,10 +1,10 @@
-var bookCtrl = require('../../api/controllers/book.controller.js');
+var bookCtrl = require('../controllers/book.controller.js');
 
 module.exports = function (server) {        
 
     server.route('/api/books')
-        .get(bookCtrl.list);
-        //.post(bookCtrl.create)
+        .get(bookCtrl.list)
+        .post(bookCtrl.create);
 
     server.route('/api/books/:id')
         .get(bookCtrl.read);

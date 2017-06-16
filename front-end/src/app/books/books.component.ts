@@ -33,11 +33,11 @@ export class BooksComponent implements OnInit {
   }
 
   getBookById(id: string) {
-    window.alert(id);
-    // this.service.getBookById(id)
-    //   .subscribe(
-    //   book => this.book = book,
-    //   error => this.errorMessage = <any>error);
+    this.service.getBookById(id)
+      .subscribe(
+      //book => this.book = book,      
+      book => this.books.push(book),
+      error => this.errorMessage = <any>error);
   }
 
 }

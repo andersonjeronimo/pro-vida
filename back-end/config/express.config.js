@@ -7,6 +7,8 @@ var methodOverride = require('method-override');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var fs = require('fs');
 
 var config = require('./config');
 
@@ -26,8 +28,8 @@ module.exports = function () {
     server.all('*', function (req, res, next) {
         res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-        res.header('Access-Control-Allow-Headers', 'Content-Type');
-        res.header('Access-Control-Allow-Credentials', 'true');
+        res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
+        res.header('Access-Control-Allow-Credentials', true);
         next();
     });
 
@@ -40,20 +42,21 @@ module.exports = function () {
         saveUninitialized: true,
         resave: true,
         secret: config.sessionSecret
-    }));   
+    }));
 
     server.use(express.static(path.join(__dirname, '../public')));
 
     //======================================================
 
     //1-Conectar com banco de dados...
-    require('../api/database/mongoose.database.js')();
+    //require('../api/database/mongoose.database.js')();
 
     //2-Criar modelos
     //require('../api/models/book.model');
-    
+
     //3-Configurar rotas
     require('../api/routes/book.routes')(server);
+    //require('../api/routes/upload.routes')(server);
 
     return server;
 }

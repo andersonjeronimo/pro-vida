@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 //var bookModel = mongoose.model('BookModel');
 var bookModel = require('../models/book.model');
 
+var google_books = require('google-books-search');
+
 exports.create = function (req, res, next) {
     var book = new bookModel({
         Title: 'Harry Potter and the Half-Blood Prince',
@@ -23,27 +25,37 @@ exports.read = function (req, res, next) {
         } else {
             res.json(doc);
         }
-    });     
+    });
 };
 
-exports.list = function (req, res, next) {   
+exports.list = function (req, res, next) {
     bookModel.find({}, function (error, docs) {
         if (error) {
             res.send({ error: 'Nao foi possivel retornar os livros.' });
         } else {
             res.json(docs);
         }
-    });    
+    });
 };
 
 exports.search = function (req, res, next) {
-    return res.json([
-        {
-            Id: 1,
-            Title: 'Angular 2 for Dummies',
-            Author: 'Loiane Groner',
-            ISBN: 'xxxxxxxxxxx',
-            Publishing: 'Packt-Publishing'
+    var options = {
+        //key: "YOUR API KEY",
+        field: 'title',
+        offset: 0,
+        limit: 10,
+        type: 'books',
+        order: 'relevance',
+        lang: 'pt-BR'
+    };
+
+    var search_value = req.params["search_value"];
+    google_books.search(search_value, options, function (error, results) {
+        if (!error) {
+            res.json(results);
+        } else {
+            res.send(error);
         }
-    ]);
+    });
+
 };

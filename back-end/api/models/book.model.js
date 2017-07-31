@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-
+//modelo para conexão com Mongo DB.
 bookSchema = mongoose.Schema({
     Title: String,
     Author: String,

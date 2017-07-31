@@ -6,15 +6,23 @@ import 'rxjs/add/operator/map';
 
 import { Book } from './entity/book';
 
+const URL = 'http://localhost:3000/api/books';  // URL to web API
+
+const SEARCH_URL = 'http://localhost:3000/api/books/search/';
+
 @Injectable()
 export class BooksService {
-
-  private booksUrl = 'http://localhost:3000/api/books';  // URL to web API
 
   constructor(private http: Http) { }
 
   getBookTitles(): Observable<Book[]> {
-    return this.http.get(this.booksUrl)
+    return this.http.get(URL)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  searchBooks(search_value: string): Observable<Book[]> {
+    return this.http.get(SEARCH_URL + search_value)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -23,8 +31,8 @@ export class BooksService {
   //https://angular.io/docs/ts/latest/api/http/index/Http-class.html
 
   getBookById(id: string): Observable<Book> {
-    console.log(this.booksUrl + '/' + id);
-    return this.http.get(this.booksUrl + '/' + id)
+    console.log(URL + '/' + id);
+    return this.http.get(URL + '/' + id)
       .map(this.extractData)
       .catch(this.handleError);
   }

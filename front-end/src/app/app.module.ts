@@ -14,7 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { routing } from 'app/app.routing';
 
 import { BooksService } from './books/books.service';
-import { FilesService } from './home/files.service';
+import { UploadsComponent } from './uploads/uploads.component';
+import { DownloadsComponent } from './downloads/downloads.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { FilesService } from './home/files.service';
     VideoComponent,
     ImagesComponent,
     ArticlesComponent,
-    HomeComponent
+    HomeComponent,
+    UploadsComponent,
+    DownloadsComponent  
   ],
   imports: [
     BrowserModule,
@@ -33,8 +36,7 @@ import { FilesService } from './home/files.service';
     routing
   ],
   providers: [
-    BooksService,
-    FilesService
+    BooksService    
     ],
   bootstrap: [AppComponent]
 })

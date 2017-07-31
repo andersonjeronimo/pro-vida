@@ -3,8 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { FilesService } from './files.service';
-import { File } from './entity/file';
 
 @Component({
   selector: 'app-home',
@@ -14,29 +12,15 @@ import { File } from './entity/file';
 export class HomeComponent implements OnInit {
 
   private errorMessage: string;
-  private files: File[];
-  private file: File;
-
+  
   mode = 'Observable';
 
-  constructor(private service: FilesService) { }
+  constructor() { }
 
   ngOnInit() {
-    //this.getFiles();
+    
   }
 
-  getFiles() {
-    this.service.getFiles()
-      .subscribe(
-      files => this.files = files,
-      error => this.errorMessage = <any>error);
-  }
-
-  getFileById(id: number) {
-    this.service.getFileById(id)
-      .subscribe(
-      file => this.file = file,
-      error => this.errorMessage = <any>error);
-  }
+  
 
 }

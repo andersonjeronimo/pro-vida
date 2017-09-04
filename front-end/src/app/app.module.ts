@@ -11,11 +11,14 @@ import { ImagesComponent } from './images/images.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { HomeComponent } from './home/home.component';
 
-import { routing } from 'app/app.routing';
+import { AppRoutingModule } from 'app/app.routing.module';
 
 import { BooksService } from './books/books.service';
 import { UploadsComponent } from './uploads/uploads.component';
 import { DownloadsComponent } from './downloads/downloads.component';
+import { ModalComponent } from './modal/modal.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,13 +30,15 @@ import { DownloadsComponent } from './downloads/downloads.component';
     ArticlesComponent,
     HomeComponent,
     UploadsComponent,
-    DownloadsComponent  
+    DownloadsComponent,
+    ModalComponent  
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [
     BooksService    

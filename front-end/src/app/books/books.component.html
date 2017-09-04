@@ -5,31 +5,56 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="input-group">
-          <input type="text" [(ngModel)]="search_value" class="form-control" placeholder="Busca por titulo, autor, editora...">
+          <input type="text" required [(ngModel)]="searchValue" class="form-control" placeholder="Busca por titulo, autor, editora...">
           <span class="input-group-btn">
-        <button class="btn btn-outline-success" type="button" (click)="searchBooks()">
-          <i class="fa fa-search fa-2x" aria-hidden="true"></i>
-        </button>
-      </span>
+            <button class="btn btn-outline-success" type="button" (click)="searchBooks()">
+              <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+            </button>
+          </span>
         </div>
       </div>
     </div>
 
-    <br> 
+    <br>
 
-    <p class="lead text-muted">Resultado da pesquisa: títulos disponíveis.</p>   
+    <p class="lead text-muted">Resultado da pesquisa: títulos disponíveis.</p>
 
     <!-- Page Content -->
 
-    <div class="row">      
-      <div *ngFor="let b of books">
-        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-          <a class="thumbnail" href="#">
-            <img class="img-responsive" src={{b.thumbnail}} alt="">
-          </a>
-        </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#pdfViewer" aria-controls="pdfViewer" aria-expanded="false"
+      aria-label="Toggle navigation" (click)="collapseBookReader()" *ngIf="collapsed">
+    <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
+            <!-- <i class="fa fa-bars fa-2x" aria-hidden="true"></i> -->
+          </button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#pdfViewer" aria-controls="pdfViewer" aria-expanded="false"
+      aria-label="Toggle navigation" (click)="collapseBookReader()" *ngIf="!collapsed">
+          <i class="fa fa-chevron-up fa-2x" aria-hidden="true"></i>
+                  <!-- <i class="fa fa-bars fa-2x" aria-hidden="true"></i> -->
+                </button>
+
+    <div class="collapse bg-inverse" id="pdfViewer">
+      <div class="container">
+        <div id="viewerCanvas" style="width: 1024px; height: 768px"></div>
       </div>
     </div>
 
-  </div>  
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#pdfViewer" aria-controls="pdfViewer" aria-expanded="false"
+      aria-label="Toggle navigation" (click)="collapseBookReader()" *ngIf="!collapsed">
+        <i class="fa fa-chevron-up fa-2x" aria-hidden="true"></i>
+                <!-- <i class="fa fa-bars fa-2x" aria-hidden="true"></i> -->
+              </button>
+
+    <div class="album text-muted">
+      <div class="container">
+        <div class="row">
+          <div class="card"></div>
+          <!-- <div *ngFor="let book of books"> -->
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb" *ngFor="let book of books">
+            <img class="img-responsive" src={{book.thumbnail}} alt="Card image cap" (click)="loadFromGoogleBooks(book)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

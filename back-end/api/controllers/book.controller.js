@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var bookModel = require('../models/book.model');
 
 var google_books = require('google-books-search');
+var config = require('../../config/config');
 
 exports.create = function (req, res, next) {
     var book = new bookModel({
@@ -40,7 +41,7 @@ exports.list = function (req, res, next) {
 
 exports.search = function (req, res, next) {
     var options = {
-        //key: "YOUR API KEY",
+        key: config.googleApiKey,
         field: 'title',
         offset: 0,
         limit: 10,
@@ -59,3 +60,27 @@ exports.search = function (req, res, next) {
     });
 
 };
+/*
+var b = { 
+    "title": "Java, Java, Java", 
+    "subtitle": "Object-oriented Problem Solving", 
+    "authors": ["Ralph Morelli", "Ralph Walde"], 
+    "publisher": "Prentice Hall", 
+    "publishedDate": "2006-01", 
+    "description": "\"Java, Java, Java, Third Edition systematically introduces the Java 1.5 language to the context of practical problem-solving and effective object-oriented design. Carefully and incrementally, the authors demonstrate how to decompose problems, use UML diagrams to design Java software that solves those problems, and transform their designs into efficient, robust code. Their \"objects-early\" approach reflects the latest pedagogical insights into teaching Java, and their examples help readers apply sophisticated techniques rapidly and effectively.\"--BOOK JACKET.", 
+    "industryIdentifiers": [
+        { "type": "ISBN_13", "identifier": "9780131474345" }, 
+        { "type": "ISBN_10", "identifier": "0131474340" }
+        ], 
+    "pageCount": 862, 
+    "printType": "BOOK", 
+    "categories": ["Computers"],
+    "averageRating": 4.5, 
+    "ratingsCount": 2, 
+    "maturityRating": "NOT_MATURE", 
+    "language": "en", 
+    "id": "k_a0pVRrFVkC",
+    "link": "https://books.google.com/books/about/Java_Java_Java.html?hl=&id=k_a0pVRrFVkC", 
+    "thumbnail": "http://books.google.com/books/content?id=k_a0pVRrFVkC&printsec=frontcover&img=1&zoom=1&source=gbs_api", 
+    "images": {} 
+};*/

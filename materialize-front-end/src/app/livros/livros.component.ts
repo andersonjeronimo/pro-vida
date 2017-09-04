@@ -1,25 +1,42 @@
+/* import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-livros',
+  templateUrl: './livros.component.html',
+  styleUrls: ['./livros.component.css']
+})
+export class LivrosComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+} */
+
+
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { BooksService } from './books.service';
-import { Book } from './entity/book';
+import { LivrosService } from './livros.service';
+import { Livro } from './livros.entity';
 
 //google books
 declare var google: any;
 
 @Component({
   selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  templateUrl: './livros.component.html',
+  styleUrls: ['./livros.component.css']
 })
-export class BooksComponent implements OnInit {
+export class LivrosComponent implements OnInit {
 
   private errorMessage: string;
-  private books: Book[];
-  private book: Book;
+  private books: Livro[];
+  private book: Livro;
   private collapsed: boolean = true;
   @Input() private searchValue: string = "";
 
@@ -28,7 +45,7 @@ export class BooksComponent implements OnInit {
 
   mode: 'Observable';
 
-  constructor(private service: BooksService) { }
+  constructor(private service: LivrosService) { }
 
   ngOnInit() {
     //google books
@@ -45,7 +62,7 @@ export class BooksComponent implements OnInit {
 
   //google books
   //https://developers.google.com/books/docs/viewer/developers_guide
-  loadFromGoogleBooks(book: Book) {    
+  loadFromGoogleBooks(book: Livro) {    
     this.viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
     let type = book.industryIdentifiers[0].type.substring(0,4);
     let identifier = book.industryIdentifiers[0].identifier;

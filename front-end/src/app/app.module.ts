@@ -3,46 +3,39 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { MaterializeModule } from 'angular2-materialize';
+
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BooksComponent } from './books/books.component';
-import { AudioComponent } from './audio/audio.component';
-import { VideoComponent } from './video/video.component';
-import { ImagesComponent } from './images/images.component';
-import { ArticlesComponent } from './articles/articles.component';
-import { HomeComponent } from './home/home.component';
-
-import { AppRoutingModule } from 'app/app.routing.module';
-
-import { BooksService } from './books/books.service';
-import { UploadsComponent } from './uploads/uploads.component';
-import { DownloadsComponent } from './downloads/downloads.component';
 import { ModalComponent } from './modal/modal.component';
+import { HomeComponent } from './home/home.component';
+import { LivrosComponent } from './livros/livros.component';
+import { AudiosComponent } from './audios/audios.component';
+import { VideosComponent } from './videos/videos.component';
+import { ImagensComponent } from './imagens/imagens.component';
+import { ArtigosComponent } from './artigos/artigos.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { LivrosService } from './livros/livros.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BooksComponent,
-    AudioComponent,
-    VideoComponent,
-    ImagesComponent,
-    ArticlesComponent,
+    ModalComponent,
     HomeComponent,
-    UploadsComponent,
-    DownloadsComponent,
-    ModalComponent  
+    LivrosComponent,
+    AudiosComponent,
+    VideosComponent,
+    ImagensComponent,
+    ArtigosComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    MaterializeModule
   ],
-  providers: [
-    BooksService    
-    ],
+  providers: [LivrosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

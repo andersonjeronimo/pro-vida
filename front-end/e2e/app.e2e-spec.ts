@@ -1,10 +1,10 @@
-import { SegundoProjetoPage } from './app.po';
+import { MaterializeFrontEndPage } from './app.po';
 
-describe('segundo-projeto App', () => {
-  let page: SegundoProjetoPage;
+describe('materialize-front-end App', () => {
+  let page: MaterializeFrontEndPage;
 
   beforeEach(() => {
-    page = new SegundoProjetoPage();
+    page = new MaterializeFrontEndPage();
   });
 
   it('should display message saying app works', () => {

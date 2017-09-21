@@ -1,14 +1,15 @@
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>  
-  <!--Conteúdo aqui-->
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
-  </div>
-</ng-template>
+<!-- Modal Trigger -->
+<a (click)="openModal()" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Info">
+  <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+</a>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">modal</button>
+<!-- Modal Structure -->
+<div class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+ <div class="modal-content">
+   <h4>Modal Header</h4>
+   <p>Texto do modal...</p>
+ </div>
+ <div class="modal-footer">
+   <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Ok</a>      
+ </div>
+</div>

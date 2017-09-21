@@ -9,8 +9,7 @@ module.exports = function (server) {
     server.route('/api/books/:id')
         .get(bookCtrl.read);
         //.put(bookCtrl.update)
-        //.delete(bookCtrl.delete);    
-    //server.param('_id', bookCtrl.get_id);
+        //.delete(bookCtrl.delete);            
 
     server.route('/api/books/search/:search_value')
         .get(bookCtrl.search);

@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class SegundoProjetoPage {
+export class MaterializeFrontEndPage {
   navigateTo() {
     return browser.get('/');
   }

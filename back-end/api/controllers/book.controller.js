@@ -44,7 +44,7 @@ exports.search = function (req, res, next) {
         key: config.googleApiKey,
         field: 'title',
         offset: 0,
-        limit: 10,
+        limit: 7,
         type: 'books',
         order: 'relevance',
         lang: 'pt-BR'

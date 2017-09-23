@@ -8,10 +8,7 @@ var config = require('../../config/config');
 
 exports.create = function (req, res, next) {
     var book = new bookModel({
-        Title: 'Harry Potter and the Half-Blood Prince',
-        Author: 'J.K.Rowling',
-        ISBN: '972-23-3445-X',
-        Publishing: 'Bloomsbury Publishing Plc'
+        //book attributes...
     });
     book.save(function (err, book) {
         if (err) return console.error(err);
@@ -44,7 +41,7 @@ exports.search = function (req, res, next) {
         key: config.googleApiKey,
         field: 'title',
         offset: 0,
-        limit: 7,
+        limit: 12,
         type: 'books',
         order: 'relevance',
         lang: 'pt-BR'

@@ -9,20 +9,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ModalComponent } from './modal/modal.component';
 import { HomeComponent } from './home/home.component';
-import { LivrosComponent } from './livros/livros.component';
+/* import { LivrosComponent } from './livros/livros.component'; */
 import { AudiosComponent } from './audios/audios.component';
 import { VideosComponent } from './videos/videos.component';
 import { ImagensComponent } from './imagens/imagens.component';
 import { ArtigosComponent } from './artigos/artigos.component';
 
-import { LivrosService } from './livros/livros.service';
+import { LivrosModule } from './livros/livros.module';
+/* import { ModalModule } from './modal/modal.module'; */
+
+/* import { LivrosService } from './livros/livros.service'; */
 
 @NgModule({
   declarations: [
     AppComponent,
     ModalComponent,
     HomeComponent,
-    LivrosComponent,
+    /* LivrosComponent, */
     AudiosComponent,
     VideosComponent,
     ImagensComponent,
@@ -33,9 +36,11 @@ import { LivrosService } from './livros/livros.service';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MaterializeModule
+    MaterializeModule,
+    LivrosModule,
+    /* ModalModule */
   ],
-  providers: [LivrosService],
+  /* providers: [LivrosService], */
   bootstrap: [AppComponent]
 })
 export class AppModule { }

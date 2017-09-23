@@ -13,7 +13,7 @@ declare var google: any;
 @Component({
   selector: 'app-books',
   templateUrl: './livros.component.html',
-  styleUrls: ['./livros.component.css']
+  styleUrls: ['./livros.component.css']  
 })
 export class LivrosComponent implements OnInit {
 
@@ -21,10 +21,8 @@ export class LivrosComponent implements OnInit {
   private books: Livro[];
   private book: Livro;
   private collapsed: boolean = true;
-  @Input() private searchValue: string = "";
-
-  //google books
-  private viewer: any;
+  
+  //@Input() searchValue: string = "pro-life";
 
   mode: 'Observable';
 
@@ -32,25 +30,22 @@ export class LivrosComponent implements OnInit {
 
   ngOnInit() {
     //google books
-    google.books.load();    
+    google.books.load({"language": "pt-BR"}); 
+    //this.searchBooks();
   }
 
-  collapseBookReader() {
+  /* collapseBookReader() {
     this.collapsed = !this.collapsed;
-  }
+  } */
 
   alertNotFound() {
     alert("could not embed the book!");
   }
 
-  //google books
-  //https://developers.google.com/books/docs/viewer/developers_guide
-  loadFromGoogleBooks(book: Livro) {    
-    this.viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
-    let type = book.industryIdentifiers[0].type.substring(0,4);
-    let identifier = book.industryIdentifiers[0].identifier;
-    this.viewer.load( type + ":" + identifier, this.alertNotFound);    
-  }  
+  initializeModalViewer(book: Livro){
+    this.service.emitter.emit(book);
+  }
+  
 
   getBookTitles() {
     this.service.getBookTitles()
@@ -67,8 +62,9 @@ export class LivrosComponent implements OnInit {
       error => this.errorMessage = <any>error);
   }
 
-  searchBooks() {
-    this.service.searchBooks(this.searchValue)
+  searchBooks(searchValue: string) {
+    //this.service.searchBooks(this.searchValue)
+    this.service.searchBooks(searchValue)
       .subscribe(
       books => this.books = books,
       error => this.errorMessage = <any>error

@@ -1,14 +1,4 @@
-/* import { Injectable } from '@angular/core';
-
-@Injectable()
-export class LivrosService {
-
-  constructor() { }
-
-} */
-
-
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -22,6 +12,8 @@ const SEARCH_URL = 'http://localhost:3000/api/books/search/';
 
 @Injectable()
 export class LivrosService {
+
+  emitter = new EventEmitter<Livro>();
 
   constructor(private http: Http) { }
 

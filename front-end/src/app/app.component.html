@@ -4,49 +4,45 @@
       <a href="#" class="brand-logo center">Central de Mídia - Rede Pró-Vida</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Login">
-            <a><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i></a>
-          </li>
-          <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Logout">
-            <a><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
-          </li>
-        <li>
-          <app-modal></app-modal>
+        <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Login">
+          <a><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i></a>
         </li>
+        <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Logout">
+          <a><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+        </li>        
       </ul>
       <ul class="side-nav" id="mobile-demo">
-          <li><a><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Entrar</a></li>
-          <li><a><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> Sair</a></li>
-        <li>
-            <app-modal></app-modal>
-          </li>
+        <li><a><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Entrar</a></li>
+        <li><a><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> Sair</a></li>        
       </ul>
     </div>
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
         <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Início">
-            <a routerLink="/home" class="nav-link" routerLinkActive="active"><i class="fa fa-institution fa-3x"></i></a>            
+          <a routerLink="/home" class="nav-link" routerLinkActive="active"><i class="fa fa-institution fa-3x"></i></a>
         </li>
         <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Livros">
-            <a routerLink="/livros" class="nav-link" routerLinkActive="active"><i class="fa fa-book fa-3x"></i></a>            
+          <a routerLink="/livros" class="nav-link" routerLinkActive="active"><i class="fa fa-book fa-3x"></i></a>
         </li>
         <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Áudios">
-            <a routerLink="/audios" class="nav-link" routerLinkActive="active"><i class="fa fa-music fa-3x"></i></a>            
+          <a routerLink="/audios" class="nav-link" routerLinkActive="active"><i class="fa fa-music fa-3x"></i></a>
         </li>
         <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Vídeos">
-            <a routerLink="/videos" class="nav-link" routerLinkActive="active"><i class="fa fa-film fa-3x"></i></a>            
+          <a routerLink="/videos" class="nav-link" routerLinkActive="active"><i class="fa fa-film fa-3x"></i></a>
         </li>
         <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Imagens">
-            <a routerLink="/imagens" class="nav-link" routerLinkActive="active"><i class="fa fa-camera fa-3x"></i></a>            
+          <a routerLink="/imagens" class="nav-link" routerLinkActive="active"><i class="fa fa-camera fa-3x"></i></a>
         </li>
-        <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Artigos Científicos">            
-            <a routerLink="/artigos" class="nav-link" routerLinkActive="active"><i class="fa fa-file-text fa-3x"></i></a>
+        <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Artigos Científicos">
+          <a routerLink="/artigos" class="nav-link" routerLinkActive="active"><i class="fa fa-file-text fa-3x"></i></a>
         </li>
       </ul>
     </div>
   </nav>
-  
+
 </header>
+
+<app-modal></app-modal>
 
 <main>
   <router-outlet></router-outlet>
@@ -56,7 +52,7 @@
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
-        <h5 class="white-text">Contato</h5>        
+        <h5 class="white-text">Contato</h5>
         <ul>
           <li>
             <i class="fa fa-envelope-o fa-3x" aria-hidden="false"></i> consolimaria@gmail.com
@@ -85,20 +81,17 @@
           <li>
             <a class="grey-text text-lighten-3" href="#!">
               <i class="fa fa-twitter fa-3x" aria-hidden="true"></i>
-            </a>
-            Twitter
+            </a> Twitter
           </li>
           <li>
             <a class="grey-text text-lighten-3" href="#!">
               <i class="fa fa-youtube fa-3x" aria-hidden="true"></i>
-            </a>
-            Youtube
+            </a> Youtube
           </li>
           <li>
             <a class="grey-text text-lighten-3" href="#!">
               <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
-            </a>
-            Instagram
+            </a> Instagram
           </li>
         </ul>
       </div>

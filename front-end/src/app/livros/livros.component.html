@@ -1,71 +1,58 @@
 <div class="section white">
   <div class="row container">
     <h2 class="header">Livros</h2>
-    <p class="grey-text text-darken-3 lighten-3">Central de Mídia - Rede Pró-Vida.</p>
+      <p class="grey-text text-darken-3 lighten-3">Central de Mídia - Rede Pró-Vida.</p>
   </div>
 </div>
 
 <div class="container">
-
-
+  
   <div class="col s12">
     <div class="row">
 
       <div class="input-field col s12">
         <i class="fa fa-search fa-2x prefix" aria-hidden="true"></i>
-        <input id="seach" type="text" required [(ngModel)]="searchValue">
+        <input id="seach" type="text" required #input>
         <label for="search">Busca por titulo, autor, editora...</label>
       </div>
 
       <div class="input-field col s6">
-        <button class="btn waves-effect waves-light blue" (click)="searchBooks()">Buscar
+        <button class="btn waves-effect waves-light blue" (click)="searchBooks(input.value)">Buscar
           <i class="material-icons right">send</i>
         </button>
       </div>
 
     </div>
   </div>
-
-  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header"><i class="fa fa-book fa-3x"></i>Leitura</div>
-      <div class="collapsible-body">
-        <div id="viewerCanvas" style="width: 1024px; height: 768px"></div>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fa fa-book fa-3x"></i>Resultado</div>
-      <div class="collapsible-body">       
-
-
-        <div class="card-panel">
-          <div class="row valign-wrapper">            
-            <div class="col s4" *ngFor="let book of books">
-              <img src={{book.thumbnail}} alt="Card image cap" (click)="loadFromGoogleBooks(book)">
-            </div>
-          </div>
+  <div class="row">
+    <div class="col s6 m2" *ngFor="let book of books">
+      <!-- <div class="card small">
+        <div class="card-image">
+          <img src="{{book.thumbnail}}" alt="" (click)="loadFromGoogleBooks(book)">          
         </div>
-
-      </div>
-    </li>
-    <!-- <li>
-      <div class="collapsible-header"><i class="fa fa-book fa-3x"></i>Resultado (teste)</div>
-      <div class="collapsible-body">
-        <div materialize="carousel" class="carousel">
-          <a class="carousel-item"><img src="http://books.google.com/books/content?id=VN11Yc2u2e0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
-          <a class="carousel-item"><img src="http://books.google.com/books/content?id=8Kemi5A4nn4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
-          <a class="carousel-item"><img src="http://books.google.com/books/content?id=UFaCtYtIAjgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
-          <a class="carousel-item"><img src="http://books.google.com/books/content?id=jdcnAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"></a>
-          <a class="carousel-item"><img src="http://books.google.com/books/content?id=oyqOGI9GSYYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
+        <div class="card-content">
+          <a href="{{book.link}}" target="blank">Descrição</a>
+        </div>
+        <div class="card-action">
+            <button class="btn waves-effect waves-light blue">Leitura</button>
+        </div>
+      </div> -->
+      <div class="card medium">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{{book.thumbnail}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Descrição</span>
+          <hr>
+          <button class="btn waves-effect waves-light blue" (click)="initializeModalViewer(book)">Ler</button>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Fechar</span>
+          <p>{{book.description}}</p>
         </div>
       </div>
-    </li> -->
-  </ul>
-
-
-
-  <!-- <div materialize="carousel" class="carousel">
-    <a *ngFor="let book of books" class="carousel-item"><img src={{book.thumbnail}} (click)="loadFromGoogleBooks(book)"></a>    
-  </div> -->
+    </div>
+  </div>    
+  
 
 </div>

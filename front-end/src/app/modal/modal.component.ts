@@ -15,7 +15,7 @@ declare var google: any;
 export class ModalComponent implements OnInit {
 
   //google books
-  private viewer: any;  
+  private viewer: any;   
 
   constructor(private service: LivrosService) { }
 
@@ -31,7 +31,7 @@ export class ModalComponent implements OnInit {
     this.modalActions.emit({ action: "modal", params: ['open'] });
   }
   closeModal() {
-    this.modalActions.emit({ action: "modal", params: ['close'] });
+    this.modalActions.emit({ action: "modal", params: ['close'] });    
   }
 
   //google books
@@ -41,16 +41,15 @@ export class ModalComponent implements OnInit {
     this.viewer = new google.books.DefaultViewer(document.getElementById('google-book-viewer'));
     let type = book.industryIdentifiers[0].type.substring(0, 4);
     let identifier = book.industryIdentifiers[0].identifier;
-    this.viewer.load(type + ":" + identifier, this.alertNotFound, this.alertFound);    
+    this.viewer.load(type + ":" + identifier, this.alertError, this.alertSuccess);    
   }
 
-  private alertNotFound() {
-    alert("Não foi possível abrir o livro selecionado.");
+  private alertError() {
+    alert("Não foi possível abrir o livro selecionado.");    
   }
 
-  private alertFound() {
-    alert("Livro carregado com sucesso!");
-    //this.openModal();
+  private alertSuccess() {    
+    alert("Livro carregado com sucesso!");    
   }
 
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -13,7 +12,7 @@ declare var google: any;
 @Component({
   selector: 'app-books',
   templateUrl: './livros.component.html',
-  styleUrls: ['./livros.component.css']  
+  styleUrls: ['./livros.component.css']
 })
 export class LivrosComponent implements OnInit {
 
@@ -21,8 +20,8 @@ export class LivrosComponent implements OnInit {
   private books: Livro[];
   private book: Livro;
   private collapsed: boolean = true;
-  
-  //@Input() searchValue: string = "pro-life";
+
+  searchValue: string = "";
 
   mode: 'Observable';
 
@@ -30,7 +29,7 @@ export class LivrosComponent implements OnInit {
 
   ngOnInit() {
     //google books
-    google.books.load({"language": "pt-BR"}); 
+    google.books.load({ "language": "pt-BR" });
     //this.searchBooks();
   }
 
@@ -42,10 +41,10 @@ export class LivrosComponent implements OnInit {
     alert("could not embed the book!");
   }
 
-  initializeModalViewer(book: Livro){
+  initializeModalViewer(book: Livro) {
     this.service.emitter.emit(book);
   }
-  
+
 
   getBookTitles() {
     this.service.getBookTitles()
@@ -58,17 +57,18 @@ export class LivrosComponent implements OnInit {
   getBookById(id: string) {
     this.service.getBookById(id)
       .subscribe(
-      book => this.book = book,      
+      book => this.book = book,
       error => this.errorMessage = <any>error);
   }
 
-  searchBooks(searchValue: string) {
-    //this.service.searchBooks(this.searchValue)
-    this.service.searchBooks(searchValue)
-      .subscribe(
-      books => this.books = books,
-      error => this.errorMessage = <any>error
-      );
+  searchBooks() {
+    if (this.searchValue !== "") {
+      this.service.searchBooks(this.searchValue)
+        .subscribe(
+        books => this.books = books,
+        error => this.errorMessage = <any>error
+        );
+    }
   }
 
 

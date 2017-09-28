@@ -1,0 +1,124 @@
+<header>
+  <nav class="nav-extended">
+
+    <div class="nav-wrapper">
+      <a class="brand-logo center">Biblioteca Virtual | Rede Pró-Vida</a>
+
+      <ul class="left hide-on-med-and-down">
+        <!-- <li materialize="tooltip" data-position="right" data-delay="50" data-tooltip="Menu"> -->
+        <li>
+          <!-- Dropdown Trigger -->
+          <a class='dropdown-button' data-activates='dropdown'>
+            <i class="fa fa-bars fa-3x" aria-hidden="true"></i>
+          </a>
+          <!-- Dropdown Structure -->
+          <ul id='dropdown' class='dropdown-content'>
+            <li>
+              <a routerLink="/biblioteca" routerLinkActive="active">Biblioteca</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a (click)="openModal()">Sobre</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="right hide-on-med-and-down">
+        <li materialize="tooltip" data-position="left" data-delay="50" data-tooltip="Sobre">
+          <!-- Modal -->
+          <!-- Modal Trigger -->
+          <a (click)="openModal()">
+            <i class="fa fa-info-circle fa-3x" aria-hidden="true"></i>
+          </a>
+          <!-- Modal Structure -->
+          <div id="modal" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+            <div class="modal-content">
+              <h4>Modal Header</h4>
+              <p>A bunch of text</p>
+            </div>
+            <div class="modal-fixed-footer">
+              <a (click)="closeModal()">
+                <i class="fa fa-times fa-3x" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Modal end -->
+        </li>
+      </ul>
+
+
+    </div>
+
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+        <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Biblioteca">
+          <a routerLink="/biblioteca" class="nav-link waves-effect waves-light" routerLinkActive="active"><i class="fa fa-institution fa-3x"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</header>
+
+<app-canvas></app-canvas>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Contato</h5>
+        <ul>
+          <li>
+            <i class="fa fa-envelope-o fa-3x" aria-hidden="false"></i> consolimaria@gmail.com
+          </li>
+          <li>
+            <i class="fa fa-phone-square fa-3x" aria-hidden="true"></i> (12) 3341-8536
+          </li>
+          <li>
+            <i class="fa fa-whatsapp fa-3x" aria-hidden="true"></i> +55(12) 98192-7401
+          </li>
+          <li>
+            <i class="fa fa-map-marker fa-3x" aria-hidden="true"></i> Av. Princesa Isabel, 1235, CEP 12211-620, Santana,
+            São José dos Campos/SP.
+          </li>
+        </ul>
+
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Pró-Vida nas redes sociais</h5>
+        <ul>
+          <li>
+            <a class="grey-text text-lighten-3" href="#!">
+                <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
+              </a>Facebook
+          </li>
+          <li>
+            <a class="grey-text text-lighten-3" href="#!">
+                <i class="fa fa-twitter fa-3x" aria-hidden="true"></i>
+              </a> Twitter
+          </li>
+          <li>
+            <a class="grey-text text-lighten-3" href="#!">
+                <i class="fa fa-youtube fa-3x" aria-hidden="true"></i>
+              </a> Youtube
+          </li>
+          <li>
+            <a class="grey-text text-lighten-3" href="#!">
+                <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+              </a> Instagram
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2017 Pró-Vida
+    </div>
+  </div>
+</footer>

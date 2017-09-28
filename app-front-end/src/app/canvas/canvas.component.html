@@ -1,0 +1,84 @@
+<!-- Modal Trigger -->
+<!-- <a (click)="openModal()" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Info">
+    <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+  </a> -->
+
+<!-- Modal Structure -->
+<div class="container">
+
+
+  <div class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+
+    <div class="modal-header">
+      <nav class="nav-extended">
+        <div class="nav-wrapper">
+          <ul class="left hide-on-med-and-down">
+            <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="diminuir fonte">
+              <a class="waves-effect waves-light" (click)="zoomOut()">
+                <i class="fa fa-search-minus fa-3x" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="aumentar fonte">
+              <a class="waves-effect waves-light" (click)="zoomIn()">
+                <i class="fa fa-search-plus fa-3x" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="página anterior">
+              <a class="waves-effect waves-light" (click)="previousPage()">
+              <i class="fa fa-caret-left fa-3x" aria-hidden="true"></i>
+            </a>
+            </li>
+            <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="próxima página">
+              <a class="waves-effect waves-light" (click)="nextPage()">
+              <i class="fa fa-caret-right fa-3x" aria-hidden="true"></i>
+            </a>
+            </li>
+            <!-- <li>
+              <div class="input-field">
+                <input type="number" [(ngModel)]="pageNumber">
+                <label>IR PARA PÁGINA Nº</label>                
+              </div>              
+            </li>
+            <li>
+                <button class="btn waves-effect waves-light green" (click)="goToPage()">
+                    <i class="material-icons right">send</i>
+                </button>
+            </li> -->
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="preencher janela">
+              <a class="waves-effect waves-light" (click)="resize()">
+                  <i class="fa fa-expand fa-3x" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="fechar">
+              <a (click)="closeModal()" class="waves-effect waves-light">
+                  <i class="fa fa-times fa-3x" aria-hidden="true"></i>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="modal-content">
+
+      <!-- <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>        
+        </div>
+      </div> -->
+
+      <div id="google-book-viewer" class="google-book-viewer"></div>
+
+    </div>
+    <!-- <div class="modal-fixed-footer">
+      <button class="btn waves-effect waves-light blue" (click)="closeModal()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div> -->
+  </div>
+
+</div>

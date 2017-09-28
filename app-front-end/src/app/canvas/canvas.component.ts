@@ -1,29 +1,29 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { MaterializeAction } from 'angular2-materialize';
-
-import { LivrosService } from '../livros/livros.service';
-import { Livro } from '../livros/livros.entity';
+import { GoogleBooksService } from '../book-shelf/google-books.service';
+import { Book } from '../book-shelf/book.entity';
 
 //google books
 declare var google: any;
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  selector: 'app-canvas',
+  templateUrl: './canvas.component.html',
+  styleUrls: ['./canvas.component.css']
 })
-export class ModalComponent implements OnInit {
+export class CanvasComponent implements OnInit {
 
   //google books
-  private viewer: any;   
+  private viewer: any;  
+  pageNumber: number = 0; 
 
-  constructor(private service: LivrosService) { }
+  constructor(private service: GoogleBooksService) { }
 
   ngOnInit() {
     google.books.load({ "language": "pt-BR" });
     this.service.emitter.subscribe(
-      livro => this.initializeViewer(livro)      
+      book => this.initializeViewer(book)      
     );
   }
 
@@ -37,12 +37,36 @@ export class ModalComponent implements OnInit {
 
   //google books
   //https://developers.google.com/books/docs/viewer/developers_guide
-  initializeViewer(book: Livro) {
+  initializeViewer(book: Book) {
     this.openModal();
-    this.viewer = new google.books.DefaultViewer(document.getElementById('google-book-viewer'));
+    this.viewer = new google.books.DefaultViewer(document.getElementById('google-book-viewer'));    
     let type = book.industryIdentifiers[0].type.substring(0, 4);
     let identifier = book.industryIdentifiers[0].identifier;
-    this.viewer.load(type + ":" + identifier, this.alertError, this.alertSuccess);    
+    this.viewer.load(type + ":" + identifier, this.alertError, this.alertSuccess);        
+  }
+
+  resize(){
+    this.viewer.resize();    
+  }
+
+  goToPage(){
+    this.viewer.goToPage(this.pageNumber);
+  }
+
+  nextPage(){
+    this.viewer.nextPage();
+  }
+  
+  previousPage(){
+    this.viewer.previousPage();
+  }
+
+  zoomIn(){
+    this.viewer.zoomIn();
+  } 
+  
+  zoomOut(){
+    this.viewer.zoomOut();
   }
 
   private alertError() {

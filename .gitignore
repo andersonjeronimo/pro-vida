@@ -1,5 +1,6 @@
 # Node Modules #
 ###################
+/biblioteca/node_modules
 /app-front-end/node_modules
 /front-end/node_modules
 /back-end/node_modules

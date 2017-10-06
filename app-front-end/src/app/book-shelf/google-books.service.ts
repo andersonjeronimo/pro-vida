@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 import { Book } from './book.entity';
 
-const URL = 'http://localhost:3000/api/books';  // URL to web API
+const URL_PREFIX = 'http://localhost:3000/api/books/';  // URL to web API
 
 const SEARCH_URL = 'http://localhost:3000/api/books/search/';
 
@@ -18,7 +18,7 @@ export class GoogleBooksService {
   constructor(private http: Http) { }
 
   getBookTitles(): Observable<Book[]> {
-    return this.http.get(URL)
+    return this.http.get(URL_PREFIX)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -32,9 +32,8 @@ export class GoogleBooksService {
   //https://stackoverflow.com/questions/34475523/how-to-pass-url-arguments-query-string-to-a-http-request-on-angular-2
   //https://angular.io/docs/ts/latest/api/http/index/Http-class.html
 
-  getBookById(id: string): Observable<Book> {
-    console.log(URL + '/' + id);
-    return this.http.get(URL + '/' + id)
+  getBookById(id: string): Observable<Book> {    
+    return this.http.get(URL_PREFIX + id)
       .map(this.extractData)
       .catch(this.handleError);
   }

@@ -50,7 +50,7 @@ export class CanvasComponent implements OnInit {
   }
 
   goToPage(){
-    this.viewer.goToPage(this.pageNumber);
+    this.viewer.goToPage(15);
   }
 
   nextPage(){

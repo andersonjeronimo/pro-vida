@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row center">
+    <h1>Autenticação</h1>
+    <p class="flow-text">{{message}}</p>
+  </div>
+
+  <div class="row">
+
+    <div class="input-field col s8 offset-s2">
+      <i class="fa fa-envelope prefix" aria-hidden="true"></i>
+      <input id="email" type="email" class="validate" name="email" required [(ngModel)]="email">
+      <label for="email" data-error="wrong" data-success="right">E-mail</label>
+    </div>
+
+    <div class="input-field col s8 offset-s2">
+      <i class="fa fa-lock prefix" aria-hidden="true"></i>
+      <input id="password" type="password" class="validate" name="password" required [(ngModel)]="password">
+      <label for="password">Senha</label>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <a class="btn btn-large waves-effect waves-light green z-depth-5" (click)="signInWithEmailAndPassword()">Login
+            <i class="fa fa-sign-in right" aria-hidden="true"></i>            
+          </a>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <a class="btn btn-large waves-effect waves-light red z-depth-5" (click)="signOut()">Logout
+            <i class="fa fa-sign-out right" aria-hidden="true"></i>            
+          </a>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <a class="btn btn-large waves-effect waves-light blue z-depth-5" (click)="createUserWithEmailAndPassword()">
+            Novo usuário
+              <i class="fa fa-user-circle-o right" aria-hidden="true"></i>
+          </a>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <!-- Dropdown Trigger -->
+      <a materialize="dropdown" class='dropdown-button btn btn-large waves-effect z-depth-5' data-activates='dropdown1'>Autenticar com
+              <i class="fa fa-check-square-o right" aria-hidden="true"></i>
+          </a>
+      <!-- Dropdown Structure -->
+      <ul id='dropdown1' class='dropdown-content'>
+        <li>
+          <a (click)="authWithGithub()">Github
+                <i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
+        </li>
+        <li>
+          <a (click)="authWithFacebook()">Facebook
+                <i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+        </li>
+        <li>
+          <a (click)="authWithTwitter()">Twitter
+                <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+              </a>
+        </li>
+        <li>
+          <a (click)="authWithGoogle()">Google
+                <i class="fa fa-google fa-2x" aria-hidden="true"></i>
+              </a>
+        </li>
+      </ul>
+    </div>
+
+
+
+
+  </div>
+
+</div>

@@ -5,60 +5,60 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map'; */
 
-//firebase
+/* firebase */
 declare var firebase: any;
 
 @Injectable()
 export class FirebaseAuthService {
 
   private config = {
-    apiKey: "AIzaSyDxHsbWF2TW7aCC6k13uPCcscmoZ7RqDEg",
-    authDomain: "biblioteca-pro-vida.firebaseapp.com",
-    databaseURL: "https://biblioteca-pro-vida.firebaseio.com",
-    projectId: "biblioteca-pro-vida",
-    storageBucket: "biblioteca-pro-vida.appspot.com",
-    messagingSenderId: "4468655282"
+    apiKey: 'AIzaSyDxHsbWF2TW7aCC6k13uPCcscmoZ7RqDEg',
+    authDomain: 'biblioteca-pro-vida.firebaseapp.com',
+    databaseURL: 'https://biblioteca-pro-vida.firebaseio.com',
+    projectId: 'biblioteca-pro-vida',
+    storageBucket: 'biblioteca-pro-vida.appspot.com',
+    messagingSenderId: '4468655282'
   };
 
-  private provider: any; 
+  private provider: any;
 
   constructor() {
-    firebase.initializeApp(this.config);    
+    firebase.initializeApp(this.config);
   }
 
   createUserWithEmailAndPassword(email: string, password: string) {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
   }
 
-  signInWithEmailAndPassword(email: string, password: string){
+  signInWithEmailAndPassword(email: string, password: string) {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
-  authWithTwitter(){
+  authWithTwitter() {
     this.provider = new firebase.auth.TwitterAuthProvider();
-    this.signInWithProvider();
+    return this.signInWithProvider();
   }
 
-  authWithFacebook(){
+  authWithFacebook() {
     this.provider = new firebase.auth.FacebookAuthProvider();
-    this.signInWithProvider();
+    return this.signInWithProvider();
   }
 
-  authWithGithub(){
+  authWithGithub() {
     this.provider = new firebase.auth.GithubAuthProvider();
-    this.signInWithProvider();
+    return this.signInWithProvider();
   }
 
-  authWithGoogle(){
+  authWithGoogle() {
     this.provider = new firebase.auth.GoogleAuthProvider();
-    this.signInWithProvider();
+    return this.signInWithProvider();
   }
 
-  signInWithProvider(){
-    firebase.auth().signInWithPopup(this.provider);
+  signInWithProvider() {
+    return firebase.auth().signInWithPopup(this.provider);
   }
 
-  signOut(){
+  signOut() {
     return firebase.auth().signOut();
   }
 

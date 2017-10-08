@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-//firebase
-//declare var firebase: any;
+// firebase
+// declare var firebase: any;
 
 const DATABASE_URL_PREFIX = 'https://biblioteca-pro-vida.firebaseio.com/'; // URL to Firebase database API
 
@@ -14,30 +14,30 @@ const DATABASE_URL_PREFIX = 'https://biblioteca-pro-vida.firebaseio.com/'; // UR
 export class FirebaseStorageService {
 
   private config = {
-    apiKey: "AIzaSyDxHsbWF2TW7aCC6k13uPCcscmoZ7RqDEg",
-    authDomain: "biblioteca-pro-vida.firebaseapp.com",
-    databaseURL: "https://biblioteca-pro-vida.firebaseio.com",
-    projectId: "biblioteca-pro-vida",
-    storageBucket: "biblioteca-pro-vida.appspot.com",
-    messagingSenderId: "4468655282"
+    apiKey: 'AIzaSyDxHsbWF2TW7aCC6k13uPCcscmoZ7RqDEg',
+    authDomain: 'biblioteca-pro-vida.firebaseapp.com',
+    databaseURL: 'https://biblioteca-pro-vida.firebaseio.com',
+    projectId: 'biblioteca-pro-vida',
+    storageBucket: 'biblioteca-pro-vida.appspot.com',
+    messagingSenderId: '4468655282'
   };
 
   constructor(private http: Http) {
-    //firebase.initializeApp(this.config);
+    // firebase.initializeApp(this.config);
   }
 
   /* listBooks(): Observable<any[]> {
     return this.http.get(DATABASE_URL_PREFIX + "books.json")
       .map(this.extractData)
-      .catch(this.handleError);    
+      .catch(this.handleError);
   }  */
 
   createBook(book: any) {
-    //return firebase.database().ref().child('books').push(book);
+    // return firebase.database().ref().child('books').push(book);
   }
 
   listBooks(): Observable<any> {
-    return this.http.get(DATABASE_URL_PREFIX + "books.json")
+    return this.http.get(DATABASE_URL_PREFIX + 'books.json')
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -59,11 +59,11 @@ export class FirebaseStorageService {
     let options = new RequestOptions({ headers: headers });
     return this.http.post(DATABASE_URL_PREFIX, book, options)
       .map(this.extractData)
-      .catch(this.handleError);    
+      .catch(this.handleError);
   } */
 
   private extractData(res: Response) {
-    let data = res.json();
+    const data = res.json();
     return data || {};
   }
 

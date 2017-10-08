@@ -1,81 +1,15 @@
-<div class="container">    
+<div class="container">
   <div class="row center">
-    <h1>Estante Virtual</h1>    
-    <p class="flow-text">Livros Disponíveis</p>
-  </div>  
-
+    <h1>Estante Virtual</h1>
+  </div>
   <div class="row">
-    <form class="col s12" #f="ngForm" (ngSubmit)="createBook()">
-      <div class="row">
-
-        <div class="input-field col s12">
-          <i class="material-icons prefix">lock</i>
-          <input id="isbn" type="text" class="validate" name="isbn" [(ngModel)]="book.isbn" required>          
-          <label for="isbn" data-error="wrong" data-success="right">ISBN</label>
-        </div>
-
-        <div class="input-field col s12">
-          <i class="material-icons prefix">lock</i>
-          <input id="title" type="text" class="validate" name="title" [(ngModel)]="book.title" required>
-          <label for="title">Title</label>
-        </div>
-
-        <div class="input-field col s12">
-          <i class="material-icons prefix">lock</i>
-          <input id="author" type="text" class="validate" name="author" [(ngModel)]="book.author" required>
-          <label for="author">Author</label>
-        </div>
-
-        <div class="input-field col s6">
-          <button [disabled]="!f.valid" class="btn waves-effect waves-light green" type="submit" name="action">Create
-                    <i class="material-icons right">add</i>
-                  </button>
-        </div>
-
+    <div class="col s12">
+      <div class="card-panel blue darken-1 z-depth-5">
+        <span class="white-text flow-text">            
+          <i class="fa fa-book" aria-hidden="true"></i>              
+            Livros disponíveis
+          </span>
       </div>
-    </form>
-  </div>  
-
-  <!-- <ul class="pagination">
-    <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a>1</a></li>
-    <li class="waves-effect"><a>2</a></li>
-    <li class="waves-effect"><a>3</a></li>
-    <li class="waves-effect"><a>4</a></li>
-    <li class="waves-effect"><a>5</a></li>
-    <li class="waves-effect"><a><i class="material-icons">chevron_right</i></a></li>
-  </ul> -->
-
-  <!-- <table class="responsive-table striped">
-    <thead>
-      <tr>
-        <th>ISBN</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>#</th>
-        <th>#</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <tr *ngFor="let book of books">
-        <td>{{book.isbn}}</td>
-        <td>{{book.title}}</td>
-        <td>{{book.author}}</td>
-        <td>
-          <button class="btn waves-effect waves-light blue">Update
-            <i class="material-icons right">update</i>
-          </button>
-        </td>
-        <td>
-          <button class="btn waves-effect waves-light red" >Delete
-                <i class="material-icons right">delete</i>
-              </button>
-        </td>
-      </tr>
-
-    </tbody>
-  </table> -->
-
+    </div>
+  </div>
 </div>

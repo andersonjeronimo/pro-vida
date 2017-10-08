@@ -9,9 +9,10 @@ import { FirebaseAuthService } from './firebase-auth.service';
 })
 export class AutenticacaoComponent implements OnInit {
 
-  email: string = "";
-  password: string = "";
-  message: string = "Você não está autenticado.";
+  email = '';
+  password = '';
+  message = 'Você não está autenticado';
+  result: any = null;
 
   constructor(private service: FirebaseAuthService) { }
 
@@ -21,66 +22,87 @@ export class AutenticacaoComponent implements OnInit {
   createUserWithEmailAndPassword() {
     this.service
       .createUserWithEmailAndPassword(this.email, this.password)
-      .then(function () {
-        this.message = "Usuário cadastrado com sucesso.";
-        this.email = "";
-        this.password = "";
-      })
+      .then(
+        result => {
+          this.message = `Usuário ${result.email} cadastrado com sucesso`;
+          this.email = '';
+          this.password = '';
+        }
+      )
       .catch(
-      error => this.message = error.code + " : " + error.message
+      error => this.message = `${error.code} : ${error.message}`
       );
   }
 
-  signInWithEmailAndPassword(){
+  signInWithEmailAndPassword() {
     this.service
-    .signInWithEmailAndPassword(this.email, this.password)
-    .then(function () {
-      this.message = "Login efetuado com sucesso.";
-      this.email = "";
-      this.password = "";
-    })
-    .catch(
-      error => this.message = error.code + " : " + error.message
-    );
+      .signInWithEmailAndPassword(this.email, this.password)
+      .then(
+        result => {
+        console.log(result);
+        this.message = `Benvindo ${result.email} !`;
+        this.email = '';
+        this.password = '';
+      })
+      .catch(
+      error => this.message = error.code + ' : ' + error.message
+      );
   }
 
-  authWithTwitter(){
+  authWithTwitter() {
     this.service
-    .authWithTwitter();
-    /* .then()
-    .catch();     */
+      .authWithTwitter()
+      .then(
+      result => this.result = result
+      )
+      .catch(
+      error => this.message = error.code + ' : ' + error.message
+      );
   }
 
-  authWithFacebook(){
+  authWithFacebook() {
     this.service
-    .authWithFacebook();
-    /* .then()
-    .catch(); */
+      .authWithFacebook()
+      .then(
+      result => this.result = result
+      )
+      .catch(
+      error => this.message = error.code + ' : ' + error.message
+      );
   }
 
-  authWithGithub(){
+  authWithGithub() {
     this.service
-    .authWithGithub();
-    /* .then()
-    .catch();     */
+      .authWithGithub()
+      .then(
+      result => this.result = result
+      )
+      .catch(
+      error => this.message = error.code + ' : ' + error.message
+      );
   }
 
-  authWithGoogle(){
+  authWithGoogle() {
     this.service
-    .authWithGoogle();
-    /* .then()
-    .catch(); */
+      .authWithGoogle()
+      .then(
+      result => this.result = result
+      )
+      .catch(
+      error => this.message = error.code + ' : ' + error.message
+      );
   }
 
-  signOut(){
+  signOut() {
     this.service
-    .signOut()
-    .then(function () {
-      this.message = "Logout efetuado com sucesso.";
-    })
-    .catch(
-      error => this.message = error.code + " : " + error.message
-    );
+      .signOut()
+      .then(
+      this.message = 'Logout efetuado com sucesso',
+      this.result = null
+      )
+      .catch(
+      error => alert(error.code + ' : ' + error.message)
+      );
   }
 
 }

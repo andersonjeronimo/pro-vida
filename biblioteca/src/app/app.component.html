@@ -11,18 +11,18 @@
             <i class="fa fa-bars fa-3x" aria-hidden="true"></i>
           </a>
           <!-- Dropdown Structure -->
-          <ul id='dropdown' class='dropdown-content'>
-            <li>
-              <a routerLink="/auth" routerLinkActive="active">Auth</a>
-            </li>
+          <ul id='dropdown' class='dropdown-content'>            
             <li>
               <a routerLink="/home" routerLinkActive="active">Home</a>
             </li>
             <li>
-              <a routerLink="/estante" routerLinkActive="active">Bookshelf</a>
+              <a routerLink="/estante" routerLinkActive="active">Shelf</a>
             </li>
             <li>
               <a routerLink="/upload" routerLinkActive="active">Upload</a>
+            </li>
+            <li>
+              <a routerLink="/auth" routerLinkActive="active">Auth</a>
             </li>
             <li class="divider"></li>
             <li>
@@ -59,10 +59,7 @@
     </div>
 
     <div class="nav-content">
-      <ul class="tabs tabs-transparent">
-        <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Autenticação">
-          <a routerLink="/auth" class="nav-link waves-effect waves-light" routerLinkActive="active"><i class="fa fa-unlock-alt fa-3x" aria-hidden="true"></i></a>
-        </li>
+      <ul class="tabs tabs-transparent">        
         <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Início">
           <a routerLink="/home" class="nav-link waves-effect waves-light" routerLinkActive="active"><i class="fa fa-institution fa-3x"></i></a>
         </li>
@@ -71,6 +68,9 @@
         </li>
         <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Incluir livro">
           <a routerLink="/upload" class="nav-link waves-effect waves-light" routerLinkActive="active"><i class="fa fa-upload fa-3x"></i></a>
+        </li>
+        <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Autenticação">
+          <a routerLink="/auth" class="nav-link waves-effect waves-light" routerLinkActive="active"><i class="fa fa-unlock-alt fa-3x" aria-hidden="true"></i></a>
         </li>
       </ul>
     </div>

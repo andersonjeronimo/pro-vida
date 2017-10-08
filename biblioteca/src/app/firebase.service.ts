@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 /* import { Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map'; */
 declare var firebase: any;
 
 @Injectable()
-export class FirebaseAuthService {
+export class FirebaseService {
 
   private config = {
     apiKey: 'AIzaSyDxHsbWF2TW7aCC6k13uPCcscmoZ7RqDEg',
@@ -21,6 +21,8 @@ export class FirebaseAuthService {
   };
 
   private provider: any;
+
+  authEmitter: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     firebase.initializeApp(this.config);
@@ -82,13 +84,3 @@ export class FirebaseAuthService {
   } */
 
 }
-
-
-
-
-
-
-
-
-
-

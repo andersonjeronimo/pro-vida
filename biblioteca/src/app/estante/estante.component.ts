@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { FirebaseStorageService } from './firebase-storage.service';
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-estante',
@@ -21,21 +21,21 @@ export class EstanteComponent implements OnInit {
     author: ''
   };
 
-  private errorMessage: string = "";  
+  private errorMessage = '';
 
-  constructor(private service: FirebaseStorageService) { }
+  constructor(private service: FirebaseService) { }
 
   ngOnInit() {
-    //this.listBooks();    
+    // this.listBooks();
   }
 
-  listBooks() {
+  /* listBooks() {
     this.service.listBooks()
       .subscribe(
       books => this.books = books,
       error => this.errorMessage = <any>error
       );
-  }
+  } */
 
 
   /* createBook(book: any) {
@@ -49,32 +49,29 @@ export class EstanteComponent implements OnInit {
       );
   } */
 
-  createBook() {
+  /* createBook() {
     this.service.createBook(this.book);
-  }
+  } */
 
-  getBook(id: string) {
+  /* getBook(id: string) {
     this.service.getBook(id)
       .subscribe(
       book => this.book = book,
       error => this.errorMessage = <any>error
       );
-  }
+  } */
 
-  deleteBook(id: string) {
+  /* deleteBook(id: string) {
     this.service.deleteBook(id)
       .subscribe(
-      /* success => {
-        this.listBooks();
-      }, */
       book => this.removeFromArray(book),
       error => this.errorMessage = <any>error
       );
-  }
+  } */
 
-  removeFromArray(book: any) {
-    let index = this.books.indexOf(book);
+  /* removeFromArray(book: any) {
+    const index = this.books.indexOf(book);
     this.books.splice(index, 1);
-  }
+  } */
 
 }

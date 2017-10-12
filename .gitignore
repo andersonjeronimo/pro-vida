@@ -4,6 +4,7 @@
 /app-front-end/node_modules
 /front-end/node_modules
 /back-end/node_modules
+/my-project/node_modules
 # Compiled source #
 ###################
 *.com

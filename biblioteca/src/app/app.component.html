@@ -53,8 +53,30 @@
           </div>
           <!-- Modal end -->
         </li>
-      </ul>
 
+        <li>
+          <div class="fixed-action-btn horizontal click-to-toggle" style="position: relative; display: inline-block; padding-top: 20px;">
+            <a class="btn-floating btn-large">
+              <i class="fa fa-bars fa-3x" aria-hidden="true"></i>
+            </a>
+            <ul>
+              <li>
+                <a class="btn-floating btn-large"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              </li>
+              <li>
+                <a class="btn-floating btn-large"><i class="fa fa-google" aria-hidden="true"></i></a>
+              </li>
+              <li>
+                <a class="btn-floating btn-large"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              </li>
+              <li>
+                <a class="btn-floating btn-large"><i class="fa fa-github" aria-hidden="true"></i></a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+      </ul>
 
     </div>
 
@@ -71,6 +93,9 @@
         </li>
         <li class="tab" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Autenticação">
           <a routerLink="/auth" class="nav-link waves-effect waves-light"><i class="fa fa-unlock-alt fa-3x" aria-hidden="true"></i></a>
+        </li>
+        <li>
+          <p class="flow-text">Olá {{user}}</p>
         </li>
       </ul>
     </div>

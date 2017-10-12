@@ -28,13 +28,13 @@ export class FirebaseService {
     firebase.initializeApp(this.config);
   }
 
-  createUserWithEmailAndPassword(email: string, password: string) {
+  /* createUserWithEmailAndPassword(email: string, password: string) {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
   }
 
   signInWithEmailAndPassword(email: string, password: string) {
     return firebase.auth().signInWithEmailAndPassword(email, password);
-  }
+  } */
 
   authWithTwitter() {
     this.provider = new firebase.auth.TwitterAuthProvider();
@@ -82,5 +82,4 @@ export class FirebaseService {
     console.error(errMsg);
     return Observable.throw(errMsg);
   } */
-
 }

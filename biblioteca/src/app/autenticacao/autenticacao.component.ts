@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { FirebaseService } from '../firebase.service';
 
@@ -8,105 +9,94 @@ import { FirebaseService } from '../firebase.service';
   styleUrls: ['./autenticacao.component.css']
 })
 export class AutenticacaoComponent implements OnInit {
-  email = '';
-  password = '';
-  message = 'Você não está autenticado';
-  result: any = null;
-  photoURL = '';
+  // email = "";
+  // password = "";
+  message = 'Autenticar com uma das contas abaixo';
 
-  constructor(private service: FirebaseService) {}
+  constructor(private service: FirebaseService, private router: Router) {}
 
-  ngOnInit() {
-    this.service.authEmitter.subscribe(
-      //verificar modificações
-    );
-  }
+  ngOnInit() { }
 
-  createUserWithEmailAndPassword() {
+  /* createUserWithEmailAndPassword() {
     this.service
       .createUserWithEmailAndPassword(this.email, this.password)
-      .then(result => {
-        this.signInSuccess(result);
-      })
-      .catch(error => {
-        this.signInError(error);
-      });
+      .then(result => this.signInSuccess(result))
+      .catch(error => this.signInError(error));
   }
 
   signInWithEmailAndPassword() {
     this.service
       .signInWithEmailAndPassword(this.email, this.password)
-      .then(result => {
-        this.signInSuccess(result);
-      })
-      .catch(error => {
-        this.signInError(error);
-      });
-  }
+      .then(result => this.signInSuccess(result))
+      .catch(error => this.signInError(error));
+  } */
 
   authWithTwitter() {
     this.service
       .authWithTwitter()
-      .then(result => {
-        this.signInSuccess(result);
-      })
-      .catch(error => {
-        this.signInError(error);
-      });
+      .then(
+        result => {
+          console.log(result);
+          this.service.authEmitter.emit(result);
+          this.router.navigate(['/home']);
+        }
+      )
+      .catch(
+        error => this.message = `${error.code} : ${error.message}`
+      );
   }
 
   authWithFacebook() {
     this.service
       .authWithFacebook()
-      .then(result => {
-        this.signInSuccess(result);
-      })
-      .catch(error => {
-        this.signInError(error);
-      });
+      .then(
+        result => {
+          console.log(result);
+          this.service.authEmitter.emit(result);
+          this.router.navigate(['/home']);
+        }
+      )
+      .catch(
+        error => this.message = `${error.code} : ${error.message}`
+      );
   }
 
   authWithGithub() {
     this.service
       .authWithGithub()
-      .then(result => {
-        this.signInSuccess(result);
-      })
-      .catch(error => {
-        this.signInError(error);
-      });
+      .then(
+        result => {
+          console.log(result);
+          this.service.authEmitter.emit(result);
+          this.router.navigate(['/home']);
+        }
+      )
+      .catch(
+        error => this.message = `${error.code} : ${error.message}`
+      );
   }
 
   authWithGoogle() {
     this.service
       .authWithGoogle()
-      .then(result => {
-        this.signInSuccess(result);
-      })
-      .catch(error => {
-        this.signInError(error);
-      });
-  }
-
-  signInSuccess(result: any) {
-    console.log(result);
-    this.message = `Usuário ${result.email} autenticado com sucesso`;
-    this.email = '';
-    this.password = '';
-    this.service.authEmitter.emit(result);
-  }
-
-  signInError(error: any) {
-    this.message = `${error.code} : ${error.message}`;
+      .then(
+        result => {
+          console.log(result);
+          this.service.authEmitter.emit(result);
+          this.router.navigate(['/home']);
+        }
+      )
+      .catch(
+        error => this.message = `${error.code} : ${error.message}`
+      );
   }
 
   signOut() {
     this.service
       .signOut()
       .then(
-        (this.message = 'Logout efetuado com sucesso'),
-        (this.result = null)
+        this.message = 'Logout efetuado com sucesso'
       )
-      .catch(error => alert(error.code + ' : ' + error.message));
+      .catch(error => alert(`${error.code} : ${error.message}`));
   }
 }

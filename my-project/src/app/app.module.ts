@@ -9,12 +9,16 @@ import { AppComponent } from './app.component';
 import { MaterializeModule } from 'angular2-materialize';
 import { BookshelfComponent } from './bookshelf/bookshelf.component';
 import { UploadComponent } from './upload/upload.component';
+import { FirebaseService } from './firebase.service';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookshelfComponent,
-    UploadComponent
+    UploadComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,10 @@ import { UploadComponent } from './upload/upload.component';
     AppRoutingModule,
     MaterializeModule
   ],
-  providers: [],
+  providers: [
+    FirebaseService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

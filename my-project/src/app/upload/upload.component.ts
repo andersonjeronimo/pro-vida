@@ -8,22 +8,25 @@ import { FirebaseService } from '../firebase.service';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-  percentage = 0;
   @ViewChild('fileInput') myFileInput: ElementRef;
+
+  percentage = 0;
+  private reference = 'books';
+  private file: File = null;
+  private files: FileList = null;
+  private storageRef: any = null;
+  private task: any = null;
 
   constructor(private service: FirebaseService) {}
 
   ngOnInit() {}
 
   onChange(event) {
-    console.log(event.target.files);
-    var _files: FileList = event.target.files;
-    var file: File = _files[0];
-
-    var storageRef = this.service.getStorageRef(file.name);
-
-    var task = storageRef.put(file);
-
+    console.log(event.target.files[0]);
+    const file = event.target.files[0];
+    const storageRef = this.service.getStorageRef(file.name, this.reference);
+    const task = storageRef.put(file);
+    // acompanhar evolução do envio
     task.on(
       'state_changed',
       snapshot => {
@@ -33,17 +36,13 @@ export class UploadComponent implements OnInit {
         console.log(error);
       },
       complete => {
+        var book = {
+
+        };
+        this.service.setDatabaseRefData(this.reference, storageRef);
         alert('Envio Completo!');
       }
-      /* function progress(snapshot) {
-        this.percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-      },
-      function error(err) {
-        console.log(err);
-      },
-      function complete() {
-        alert('Envio completo!');
-      } */
     );
   }
+
 }

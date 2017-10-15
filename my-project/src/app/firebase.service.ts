@@ -1,12 +1,11 @@
+import { fileExists } from 'ts-node/dist';
 import { EventEmitter, Injectable } from '@angular/core';
-
 
 /* firebase */
 declare var firebase: any;
 
 @Injectable()
 export class FirebaseService {
-
   private provider: any;
   private userAuthenticated = false;
 
@@ -38,9 +37,18 @@ export class FirebaseService {
     return this.userAuthenticated;
   }
 
-  getStorageRef(filename: string) {
-    return firebase.storage().ref(`books/${filename}`);
+  getStorageRef(fileName: string, reference: string) {
+    return firebase.storage().ref(`${reference}/${fileName}`);
   }
+
+  getDatabaseRef(reference: string) {
+    return firebase.database().ref(`${reference}`).orderByKey();
+  }
+
+  setDatabaseRefData(reference: string, data: any) {
+    return firebase.database().ref().child(reference).push(data);
+  }
+
 
   /* createUserWithEmailAndPassword(email: string, password: string) {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -67,9 +75,10 @@ export class FirebaseService {
 
   authWithGoogle() {
     this.provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(this.provider)
-    .then(
-      result => {
+    firebase
+      .auth()
+      .signInWithPopup(this.provider)
+      .then(result => {
         console.log(result);
         this.userAuthenticated = true;
         this.user = {
@@ -81,14 +90,10 @@ export class FirebaseService {
           photoURL: result.user.photoURL
         };
         this.authEmitter.emit(this.user);
-      }
-    )
-    .catch(
-      error => {
+      })
+      .catch(error => {
         alert(`${error.code} : ${error.message}`);
-
-      }
-    );
+      });
   }
 
   signOut() {

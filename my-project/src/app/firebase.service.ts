@@ -49,30 +49,6 @@ export class FirebaseService {
     return firebase.database().ref().child(reference).push(data);
   }
 
-
-  /* createUserWithEmailAndPassword(email: string, password: string) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
-  }
-
-  signInWithEmailAndPassword(email: string, password: string) {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
-  } */
-
-  /* authWithTwitter() {
-    this.provider = new firebase.auth.TwitterAuthProvider();
-    return this.signInWithProvider();
-  }
-
-  authWithFacebook() {
-    this.provider = new firebase.auth.FacebookAuthProvider();
-    return this.signInWithProvider();
-  }
-
-  authWithGithub() {
-    this.provider = new firebase.auth.GithubAuthProvider();
-    return this.signInWithProvider();
-  } */
-
   authWithGoogle() {
     this.provider = new firebase.auth.GoogleAuthProvider();
     firebase
@@ -108,6 +84,29 @@ export class FirebaseService {
     this.authEmitter.emit(this.user);
     this.userAuthenticated = false;
   }
+
+  /* createUserWithEmailAndPassword(email: string, password: string) {
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
+
+  signInWithEmailAndPassword(email: string, password: string) {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  } */
+
+  /* authWithTwitter() {
+    this.provider = new firebase.auth.TwitterAuthProvider();
+    return this.signInWithProvider();
+  }
+
+  authWithFacebook() {
+    this.provider = new firebase.auth.FacebookAuthProvider();
+    return this.signInWithProvider();
+  }
+
+  authWithGithub() {
+    this.provider = new firebase.auth.GithubAuthProvider();
+    return this.signInWithProvider();
+  } */
 
   /* private extractData(res: Response) {
     let data = res.json();

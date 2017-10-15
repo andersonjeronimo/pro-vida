@@ -3,64 +3,67 @@
     <div class="col s12">
       <div class="card-panel blue darken-1 z-depth-5">
         <span class="white-text flow-text">
-            <i class="fa fa-upload" aria-hidden="true"></i>
-              Cadastro de E-books
+              Cadastro de Livros
             </span>
       </div>
     </div>
   </div>
 
-  <!-- <div class="row">
-
-    <div class="input-field col s6 offset-s3">
-      <progress [value]="percentage" max="100"></progress>
-    </div>
-
-
-    <div class="input-field col s6 offset-s3">
-      <input type="file" #fileInput value="upload" class="z-depth-5" (change)="onChange($event)">
-    </div>
-
-  </div> -->
-
   <div class="row">
-    <div class="progress">
-      <div class="indeterminate"></div>
-    </div>
-    <p class="flow-text">
-      Progresso: {{percentage}} %
-    </p>
-  </div>
+    <form class="col s12" #myForm>
 
-  <div class="row">
-    <form class="col s12">
       <div class="row">
-        <div class="file-field input-field">
-          <div class="btn btn-large waves-effect waves-light green z-depth-5">
-            <span>Selecione Arquivo</span>
+        <div class="file-field col s6 offset-s3">
+          <a class="btn btn-large waves-effect waves-light blue z-depth-5">
+              <i class="fa fa-file-pdf-o left" aria-hidden="true"></i>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="SELECIONAR ARQUIVO" />
+            </div>
             <input type="file" #fileInput value="upload" (change)="onChange($event)" />
-          </div>
-
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" placeholder="Nome do arquivo" />
-          </div>
+          </a>
         </div>
       </div>
 
-      <!-- <div class="row">
-        <label>Materialize Multi File Input</label>
-        <div class="file-field input-field">
-          <div class="btn">
-            <span>Browse</span>
-            <input type="file" multiple />
-          </div>
-
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" placeholder="Upload multiple files" />
-          </div>
+      <div class="row">
+        <div class="input-field">
+          <i class="fa fa-book prefix" aria-hidden="true"></i>
+          <input id="title" type="text" class="validate" name="title" required [(ngModel)]="book.title">
+          <label for="title">Titulo</label>
         </div>
-      </div> -->
+        <div class="input-field">
+          <i class="fa fa-user-circle prefix" aria-hidden="true"></i>
+          <input id="author" type="text" class="validate" name="author" required [(ngModel)]="book.author">
+          <label for="author">Autor</label>
+        </div>
+        <div class="input-field">
+          <i class="fa fa-barcode prefix" aria-hidden="true"></i>
+          <input id="isbn" type="number" class="validate" name="isbn" required [(ngModel)]="book.isbn">
+          <label for="isbn">ISBN</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <a class="btn btn-large waves-effect waves-light green z-depth-5" (click)="uploadFile()">
+            Efetuar upload
+            <i class="fa fa-upload left" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="input-field col s6 offset-s3">
+          <progress max="100" [value]="percentage"></progress>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <a class="btn btn-large waves-effect waves-light red z-depth-5" (click)="clearForm()">
+                Limpar Formulário
+                <i class="fa fa-eraser left" aria-hidden="true"></i>
+              </a>
+        </div>
+      </div>
     </form>
+
   </div>
 
 </div>

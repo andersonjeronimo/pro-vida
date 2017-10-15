@@ -26,7 +26,7 @@ export class UploadComponent implements OnInit {
     const file = event.target.files[0];
     const storageRef = this.service.getStorageRef(file.name, this.reference);
     const task = storageRef.put(file);
-    // acompanhar evolução do envio
+    // acompanhar evolução do envio para o storage
     task.on(
       'state_changed',
       snapshot => {
@@ -36,10 +36,8 @@ export class UploadComponent implements OnInit {
         console.log(error);
       },
       complete => {
-        var book = {
-
-        };
-        this.service.setDatabaseRefData(this.reference, storageRef);
+        // gravar dados sobre o arquivo no database
+        this.service.setDatabaseRefData(this.reference, {fileName: file.name});
         alert('Envio Completo!');
       }
     );

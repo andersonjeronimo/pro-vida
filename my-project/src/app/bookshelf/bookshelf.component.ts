@@ -17,11 +17,11 @@ export class BookshelfComponent implements OnInit {
   ngOnInit() {
   }
 
-  listFilesUrl() {
+  listFiles() {
     const databaseRef = this.service.getDatabaseRef(this.reference);
     databaseRef.once('value').then(snapshot => {
       snapshot.forEach(childSnapshot => {
-        this.fileList.push(childSnapshot);
+        this.fileList.push(childSnapshot.val());
       });
     });
     console.log(this.fileList);

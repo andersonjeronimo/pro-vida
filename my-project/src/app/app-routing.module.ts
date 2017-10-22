@@ -8,8 +8,8 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   /* { path: '', children: []}, */
-  { path: '', component: LoginComponent/* , canDeactivate: [AuthGuard] */ },
   { path: 'login', component: LoginComponent/* , canDeactivate: [AuthGuard] */ },
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'bookshelf', component: BookshelfComponent, canActivate: [AuthGuard]},
   { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] }
 ];

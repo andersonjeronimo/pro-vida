@@ -37,8 +37,7 @@
           <td>
 
 
-            <a class="btn btn-large waves-effect waves-light blue z-depth-5"
-            (click)="openFile(file.fileName)">
+            <a class="btn btn-large waves-effect waves-light blue z-depth-5" (click)="openFile(file.fileName)">
                   Abrir Arquivo
                   <i class="fa fa-eye" aria-hidden="true"></i>
                 </a>
@@ -55,6 +54,22 @@
         </tr>
       </tfoot>
     </table>
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+    <div class="modal-content">
+      <div *ngIf="URL">
+        <object [data]='URL' type="application/pdf" style="width: 1280px; height: 1050px ;"></object>
+      </div>
+    </div>
+    <div class="modal-fixed-footer">
+      <a (click)="closeModal()">
+            <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+          </a>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+    <!-- Modal end -->
   </div>
 
   <div class="row">

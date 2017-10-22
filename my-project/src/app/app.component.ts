@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FirebaseService } from './firebase.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
     photoURL: null
   };
 
-  constructor(private service: FirebaseService) {}
+  constructor(private service: FirebaseService, private router: Router) {}
 
   ngOnInit(): void {
     this.service.authEmitter.subscribe(
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   signOut() {
+    this.router.navigate(['/login']);
     this.service.signOut();
   }
 }

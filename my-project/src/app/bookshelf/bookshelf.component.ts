@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { FirebaseService } from '../firebase.service';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-bookshelf',
@@ -13,11 +15,23 @@ export class BookshelfComponent implements OnInit {
   private databaseBooksRef: any = null;
   private storageBooksRef: any = null;
 
-  constructor(private service: FirebaseService) {}
+  URL: SafeResourceUrl = null;
+
+  // modal
+  modalActions = new EventEmitter<string | MaterializeAction>();
+
+  constructor(private service: FirebaseService, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.databaseBooksRef = this.service.getDatabaseRef(this.reference);
     this.storageBooksRef = this.service.getStorageRef(this.reference);
+  }
+
+  openModal() {
+    this.modalActions.emit({ action: 'modal', params: ['open'] });
+  }
+  closeModal() {
+    this.modalActions.emit({ action: 'modal', params: ['close'] });
   }
 
   listFiles() {
@@ -30,6 +44,12 @@ export class BookshelfComponent implements OnInit {
     console.log(this.fileList);
   }
 
+  /* fileURL() {
+    if (this.URL !== "") {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(this.URL);
+    }
+  } */
+
   openFile(fileName: string) {
     // Create a reference to the file we want to download
     const fileRef = this.storageBooksRef.child(fileName);
@@ -38,7 +58,8 @@ export class BookshelfComponent implements OnInit {
     fileRef
       .getDownloadURL()
       .then(url => {
-        alert(url);
+        this.URL = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        this.openModal();
       })
       .catch(function(error) {
         // A full list of error codes is available at

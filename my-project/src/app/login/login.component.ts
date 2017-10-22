@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { FirebaseService } from '../firebase.service';
@@ -9,7 +10,7 @@ import { FirebaseService } from '../firebase.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private service: FirebaseService) { }
+  constructor(private service: FirebaseService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   signOut() {
+    this.router.navigate(['/login']);
     this.service.signOut();
   }
 

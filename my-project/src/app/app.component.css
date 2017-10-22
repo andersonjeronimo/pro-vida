@@ -1,7 +1,12 @@
-.nav-extended{
+.nav-extended {
   background-color: #0277bd;
 }
 
-.nav-content{
+.nav-content {
   background-color: #01579b;
 }
+
+/* .navbar-nav > li > .dropdown-content {
+  width: auto !important;
+  display: inline-block;
+} */

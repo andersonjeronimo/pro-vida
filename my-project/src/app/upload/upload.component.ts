@@ -17,14 +17,16 @@ export class UploadComponent implements OnInit {
   private reference = 'books';
   private file: File = null;
   // private files: FileList = null;
-  private storageRef: any = null;
+  private storageBooksRef: any = null;
   private task: any = null;
 
   book: Book = new Book(null, null, null, null, null, null);
 
   constructor(private service: FirebaseService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.storageBooksRef = this.service.getStorageRef(this.reference);
+  }
 
   onChange(event) {
     console.log(event.target.files[0]);
@@ -41,10 +43,10 @@ export class UploadComponent implements OnInit {
 
   uploadFile() {
     if (this.file != null) {
-      const storageRef = this.service.getStorageRef(this.file.name, this.reference);
-      console.log(storageRef);
+      const storageFileRef = this.storageBooksRef.child(this.file.name);
+      console.log(storageFileRef);
       this.book.fileName = this.file.name;
-      const task = storageRef.put(this.file);
+      const task = storageFileRef.put(this.file);
       // acompanhar evolução do envio para o storage
       task.on(
         'state_changed',

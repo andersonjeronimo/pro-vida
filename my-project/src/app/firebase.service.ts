@@ -37,12 +37,12 @@ export class FirebaseService {
     return this.userAuthenticated;
   }
 
-  getStorageRef(fileName: string, reference: string) {
-    return firebase.storage().ref(`${reference}/${fileName}`);
+  getStorageRef(reference: string) {
+    return firebase.storage().ref(reference);
   }
 
   getDatabaseRef(reference: string) {
-    return firebase.database().ref(`${reference}`).orderByKey();
+    return firebase.database().ref(reference).orderByKey();
   }
 
   setDatabaseRefData(reference: string, data: any) {

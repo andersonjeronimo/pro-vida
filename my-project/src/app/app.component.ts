@@ -25,4 +25,12 @@ export class AppComponent implements OnInit {
       user => this.user = user
     );
   }
+
+  authWithGoogle() {
+    this.service.authWithGoogle();
+  }
+
+  signOut() {
+    this.service.signOut();
+  }
 }

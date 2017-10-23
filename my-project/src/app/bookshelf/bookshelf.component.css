@@ -1,4 +1,34 @@
 .col.s6 > .btn {
   width: 100%;
 }
-.modal { width: 1280px; height: 1050px ; }
+
+.modal {
+  width: 80% !important;
+  max-height: 100% !important;
+  height: 100% !important;
+  overflow-y: hidden !important;
+} /* increase the width, height and prevent vertical scroll! However, i don't recommend this, its better to turn on vertical scrolling. */
+
+.intrinsic-container {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+}
+
+/* 16x9 Aspect Ratio */
+.intrinsic-container-16x9 {
+  padding-bottom: 56.25%;
+}
+
+/* 4x3 Aspect Ratio */
+.intrinsic-container-4x3 {
+  padding-bottom: 75%;
+}
+
+.intrinsic-container iframe {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

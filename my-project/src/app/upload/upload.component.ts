@@ -16,8 +16,8 @@ export class UploadComponent implements OnInit {
   percentage = 0;
   private reference = 'books';
   private file: File = null;
-  // private files: FileList = null;
   private storageBooksRef: any = null;
+  private databaseBooksChildRef: any = null;
   private task: any = null;
 
   book: Book = new Book(null, null, null, null, null, null);
@@ -26,6 +26,7 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
     this.storageBooksRef = this.service.getStorageRef(this.reference);
+    this.databaseBooksChildRef = this.service.getDatabaseChildRef(this.reference);
   }
 
   onChange(event) {
@@ -58,7 +59,7 @@ export class UploadComponent implements OnInit {
         },
         complete => {
           // gravar dados sobre o arquivo no database
-          this.service.setDatabaseRefData(this.reference, this.book);
+          this.databaseBooksChildRef.push(this.book);
           this.clearForm();
           alert('Envio Completo!');
         }

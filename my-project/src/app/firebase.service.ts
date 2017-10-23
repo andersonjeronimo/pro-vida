@@ -45,8 +45,8 @@ export class FirebaseService {
     return firebase.database().ref(reference).orderByKey();
   }
 
-  setDatabaseRefData(reference: string, data: any) {
-    return firebase.database().ref().child(reference).push(data);
+  getDatabaseChildRef(reference: string) {
+    return firebase.database().ref().child(reference);
   }
 
   authWithGoogle() {

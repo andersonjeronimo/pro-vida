@@ -3,6 +3,14 @@
   <nav class="nav-extended">
 
     <div class="nav-wrapper">
+
+
+          <div class="chip">
+              <img [src]="authUser.photoURL" alt="Contact Person"> {{authUser.displayName}}
+            </div>
+
+
+
       <a class="brand-logo center">Biblioteca Virtual</a>
       <!-- Dropdown -->
       <ul class="right">
@@ -14,8 +22,13 @@
           <!-- Dropdown Structure -->
           <ul id='dropdown' class='dropdown-content'>
             <li>
-              <a (click)="authWithGoogle()">Login
-                <i class="fa fa-unlock-alt fa-3x left" aria-hidden="true"></i>
+              <a (click)="authWithGoogle()">Google
+                <i class="fa fa-google fa-3x left" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a (click)="authWithFacebook()">Facebook
+                <i class="fa fa-facebook fa-3x left" aria-hidden="true"></i>
               </a>
             </li>
             <li class="divider"></li>

@@ -1,5 +1,5 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 
 import { FirebaseService } from '../firebase.service';
 
@@ -8,15 +8,32 @@ import { FirebaseService } from '../firebase.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  authUser: any = {
+    accessToken: null,
+    refreshToken: null,
+    uid: null,
+    displayName: null,
+    email: null,
+    photoURL: null
+  };
 
-  constructor(private service: FirebaseService, private router: Router) { }
+  private subscription: any;
+
+  constructor(private service: FirebaseService, private router: Router) {}
 
   ngOnInit() {
+    this.subscription = this.service.authEmitter.subscribe(
+      result => (this.authUser = result)
+    );
   }
 
   authWithGoogle() {
     this.service.authWithGoogle();
+  }
+
+  authWithFacebook() {
+    this.service.authWithFacebook();
   }
 
   signOut() {
@@ -24,4 +41,7 @@ export class LoginComponent implements OnInit {
     this.service.signOut();
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

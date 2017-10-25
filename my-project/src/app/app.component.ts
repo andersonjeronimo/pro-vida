@@ -1,16 +1,16 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { FirebaseService } from './firebase.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'app works!';
+export class AppComponent implements OnInit, OnDestroy {
 
-  private user: any = {
+  authUser: any = {
     accessToken: null,
     refreshToken: null,
     uid: null,
@@ -19,11 +19,15 @@ export class AppComponent implements OnInit {
     photoURL: null
   };
 
+  userAuthenticated = this.service.isUserAuthenticated();
+
+  private subscription: any;
+
   constructor(private service: FirebaseService, private router: Router) {}
 
   ngOnInit(): void {
-    this.service.authEmitter.subscribe(
-      user => this.user = user
+    this.subscription = this.service.authEmitter.subscribe(
+      result => (this.authUser = result)
     );
   }
 
@@ -31,8 +35,16 @@ export class AppComponent implements OnInit {
     this.service.authWithGoogle();
   }
 
+  authWithFacebook() {
+    this.service.authWithFacebook();
+  }
+
   signOut() {
     this.router.navigate(['/login']);
     this.service.signOut();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

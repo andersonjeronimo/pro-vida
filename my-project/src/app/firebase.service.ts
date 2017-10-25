@@ -33,7 +33,7 @@ export class FirebaseService {
     firebase.initializeApp(this.config);
   }
 
-  isUserAuthenticated() {
+  isUserAuthenticated(): boolean {
     return this.userAuthenticated;
   }
 
@@ -42,11 +42,40 @@ export class FirebaseService {
   }
 
   getDatabaseRef(reference: string) {
-    return firebase.database().ref(reference).orderByKey();
+    return firebase
+      .database()
+      .ref(reference)
+      .orderByKey();
   }
 
   getDatabaseChildRef(reference: string) {
-    return firebase.database().ref().child(reference);
+    return firebase
+      .database()
+      .ref()
+      .child(reference);
+  }
+
+  authWithFacebook() {
+    this.provider = new firebase.auth.FacebookAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(this.provider)
+      .then(result => {
+        console.log(result);
+        this.userAuthenticated = true;
+        /* this.user = {
+          accessToken: result.credential.accessToken,
+          refreshToken: result.refreshToken,
+          uid: result.uid,
+          displayName: result.user.displayName,
+          email: result.user.email,
+          photoURL: result.user.photoURL
+        }; */
+        this.authEmitter.emit(result/* this.user */);
+      })
+      .catch(error => {
+        alert(`${error.code} : ${error.message}`);
+      });
   }
 
   authWithGoogle() {
@@ -95,11 +124,6 @@ export class FirebaseService {
 
   /* authWithTwitter() {
     this.provider = new firebase.auth.TwitterAuthProvider();
-    return this.signInWithProvider();
-  }
-
-  authWithFacebook() {
-    this.provider = new firebase.auth.FacebookAuthProvider();
     return this.signInWithProvider();
   }
 

@@ -3,9 +3,9 @@
 }
 
 .modal {
-  width: 80% !important;
+  width: 75% !important;
   max-height: 100% !important;
-  height: 100% !important;
+  height: 90% !important;
   overflow-y: hidden !important;
 } /* increase the width, height and prevent vertical scroll! However, i don't recommend this, its better to turn on vertical scrolling. */
 

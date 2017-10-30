@@ -32,10 +32,9 @@ export class LoginComponent implements OnInit {
     this.authenticationService
       .signInWithEmailAndPassword(this.model.email, this.model.password)
       .then(data => {
-        console.log(data);
         this.alertService.success('Login efetuado com sucesso', true);
-        this.router.navigate(['/login']);
-        this.loading = false;
+        // this.loading = false;
+        this.router.navigate(['/home']);
       })
       .catch(error => {
         this.alertService.error(error);
@@ -48,10 +47,9 @@ export class LoginComponent implements OnInit {
     this.authenticationService
       .authWithGoogle()
       .then(data => {
-        console.log(data);
         this.alertService.success('Autenticação com Google efetuada com sucesso', true);
-        this.router.navigate(['/login']);
-        this.loading = false;
+        // this.loading = false;
+        this.router.navigate(['/home']);
       })
       .catch(error => {
         this.alertService.error(error);
@@ -64,10 +62,9 @@ export class LoginComponent implements OnInit {
     this.authenticationService
       .authWithFacebook()
       .then(data => {
-        console.log(data);
         this.alertService.success('Autenticação com Facebook efetuada com sucesso', true);
-        this.router.navigate(['/login']);
-        this.loading = false;
+        // this.loading = false;
+        this.router.navigate(['/home']);
       })
       .catch(error => {
         this.alertService.error(error);

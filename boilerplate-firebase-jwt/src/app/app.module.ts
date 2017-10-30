@@ -16,6 +16,7 @@ import { AuthenticationService } from './_services/index';
 import { AlertService } from './_services/index';
 import { UserService } from './_services/index';
 import { AuthGuard } from './_guards/index';
+import { PreloaderComponent } from './_directives/preloader/preloader.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AuthGuard } from './_guards/index';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,

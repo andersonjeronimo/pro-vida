@@ -1,4 +1,4 @@
-import { FirebaseService } from "./firebase.service";
+import { FirebaseService } from './firebase.service';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -13,19 +13,18 @@ export class AuthenticationService {
     this.provider = new this.service._firebase.auth.FacebookAuthProvider();
     return this.service._firebase
       .auth()
-      .signInWithPopup(this.provider);
-      /* .then(result => {
-        console.log(result);
+      .signInWithPopup(this.provider)
+      .then(data => {
         // local storage (...)
-        let user = result.json();
-        if (user && user.token) {
+        const user = data.user; // .json();
+        if (user && user.refreshToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
-      })
-      .catch(error => {
+      });
+      /* .catch(error => {
         alert(`${error.code} : ${error.message}`);
-        // criar diretiva de alertas
+        // utilizar diretiva de alertas
       }); */
   }
 
@@ -33,17 +32,16 @@ export class AuthenticationService {
     this.provider = new this.service._firebase.auth.GoogleAuthProvider();
     return this.service._firebase
       .auth()
-      .signInWithPopup(this.provider);
-      /* .then(result => {
-        console.log(result);
+      .signInWithPopup(this.provider)
+      .then(data => {
         // local storage (...)
-        let user = result.json();
-        if (user && user.token) {
+        const user = data.user; // .json();
+        if (user && user.refreshToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
-      })
-      .catch(error => {
+      });
+      /* .catch(error => {
         alert(`${error.code} : ${error.message}`);
         // utilizar diretiva de alertas
       }); */
@@ -56,35 +54,24 @@ export class AuthenticationService {
   }
 
   createUserWithEmailAndPassword(email: string, password: string) {
-    // return this.service._firebase.auth().createUserWithEmailAndPassword(email, password);
     return this.service._firebase
       .auth()
       .createUserWithEmailAndPassword(email, password);
-      /* .then(result => {
-        let user = result.json();
-        if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
-      })
-      .catch(error => {
-        alert(`${error.code} : ${error.message}`);
-        // utilizar diretiva de alertas
-      }); */
   }
 
   signInWithEmailAndPassword(email: string, password: string) {
     return this.service._firebase
       .auth()
-      .signInWithEmailAndPassword(email, password);
-      /* .then(result => {
-        let user = result.json();
-        if (user && user.token) {
+      .signInWithEmailAndPassword(email, password)
+      .then(data => {
+        // local storage (...)
+        const user = data; // .json();
+        if (user && user.refreshToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
-      })
-      .catch(error => {
+      });
+      /* .catch(error => {
         alert(`${error.code} : ${error.message}`);
         // utilizar diretiva de alertas
       }); */

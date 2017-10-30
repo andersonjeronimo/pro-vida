@@ -19,7 +19,7 @@ export class RegisterComponent {
 
     register() {
         this.loading = true;
-        this.authService.createUserWithEmailAndPassword(this.model.username, this.model.password)
+        this.authService.createUserWithEmailAndPassword(this.model.email, this.model.password)
         .then(
           result => {
             console.log(result);

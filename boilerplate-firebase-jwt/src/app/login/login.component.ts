@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       .then(data => {
         this.alertService.success('Login efetuado com sucesso', true);
         // this.loading = false;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       })
       .catch(error => {
         this.alertService.error(error);
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       .then(data => {
         this.alertService.success('Autenticação com Google efetuada com sucesso', true);
         // this.loading = false;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       })
       .catch(error => {
         this.alertService.error(error);
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
       .then(data => {
         this.alertService.success('Autenticação com Facebook efetuada com sucesso', true);
         // this.loading = false;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       })
       .catch(error => {
         this.alertService.error(error);

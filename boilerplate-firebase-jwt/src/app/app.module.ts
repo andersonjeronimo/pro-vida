@@ -17,6 +17,9 @@ import { AlertService } from './_services/index';
 import { UserService } from './_services/index';
 import { AuthGuard } from './_guards/index';
 import { PreloaderComponent } from './_directives/preloader/preloader.component';
+import { UploadComponent } from './upload/upload.component';
+import { BookshelfComponent } from './bookshelf/bookshelf.component';
+import { HomeContentComponent } from './home-content/home-content.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { PreloaderComponent } from './_directives/preloader/preloader.component'
     LoginComponent,
     RegisterComponent,
     AlertComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    UploadComponent,
+    BookshelfComponent,
+    HomeContentComponent
   ],
   imports: [
     BrowserModule,

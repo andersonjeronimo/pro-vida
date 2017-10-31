@@ -28,7 +28,7 @@ export class UserService {
 
   update(user: User) {
     return this.http
-      .put('/api/users/' + user.id, user, this.jwt())
+      .put('/api/users/' + user.uid, user, this.jwt())
       .map((response: Response) => response.json());
   }
 

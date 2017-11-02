@@ -1,5 +1,57 @@
 <div class="jumbotron">
-  <h1>Bookshelf</h1>
-  <p class="lead">Use this document as a way to quickly start any new project.
-    <br> All you get is this text and a mostly barebones HTML document.</p>
+  <h1>Estante Virtual</h1>
+
+  <div class="row" *ngIf="loading == false">
+    <button class="btn btn-success" (click)="listFiles()">
+      <i class="fa fa-list" aria-hidden="true"></i> Listar livros
+    </button>
+  </div>
+
+  <preloader *ngIf="loading"></preloader>
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button class="btn btn-default close" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="URL">
+        <object [data]='URL' type="application/pdf" width="600" height="800"></object>
+      </div>
+    </div>
+  </ng-template>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>ISBN</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of fileList">
+        <td>{{file.title}}</td>
+        <td>{{file.author}}</td>
+        <td>{{file.isbn}}</td>
+        <td>
+          <button [disabled]="loading" class="btn btn-primary" (click)="openFile(file.fileName, template)">
+            <i class="fa fa-eye" aria-hidden="true"></i> Abrir livro
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>ISBN</th>
+        <th>Ações</th>
+      </tr>
+    </tfoot>
+  </table>
+
 </div>

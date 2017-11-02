@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AlertService, UserService, AuthenticationService } from '../_services/index';
+import { AlertService, UserService, FirebaseService } from '../_services/index';
 
 @Component({
     moduleId: module.id,
@@ -14,7 +14,7 @@ export class RegisterComponent {
     constructor(
         private router: Router,
         // private userService: UserService,
-        private authService: AuthenticationService,
+        private authService: FirebaseService,
         private alertService: AlertService) { }
 
     register() {

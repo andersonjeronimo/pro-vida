@@ -1,5 +1,122 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="card-panel blue darken-1 z-depth-5">
+        <span class="white-text flow-text">
+              Cadastro de Livros
+            </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <form class="col s12" #myForm>
+
+      <div class="row">
+        <div class="file-field col s6 offset-s3">
+          <a class="btn btn-large waves-effect waves-light blue z-depth-5">
+              <i class="fa fa-file-pdf-o left" aria-hidden="true"></i>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="SELECIONAR ARQUIVO" />
+            </div>
+            <input type="file" #fileInput value="upload" (change)="onChange($event)" />
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field">
+          <i class="fa fa-book prefix" aria-hidden="true"></i>
+          <input id="title" type="text" class="validate" name="title" required [(ngModel)]="book.title">
+          <label for="title">Titulo</label>
+        </div>
+        <div class="input-field">
+          <i class="fa fa-user-circle prefix" aria-hidden="true"></i>
+          <input id="author" type="text" class="validate" name="author" required [(ngModel)]="book.author">
+          <label for="author">Autor</label>
+        </div>
+        <div class="input-field">
+          <i class="fa fa-barcode prefix" aria-hidden="true"></i>
+          <input id="isbn" type="number" class="validate" name="isbn" required [(ngModel)]="book.isbn">
+          <label for="isbn">ISBN</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <a class="btn btn-large waves-effect waves-light green z-depth-5" (click)="uploadFile()">
+            Efetuar upload
+            <i class="fa fa-upload left" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="input-field col s6 offset-s3" *ngIf="uploading" >
+          <progress max="100" [value]="percentage"></progress>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <a class="btn btn-large waves-effect waves-light red z-depth-5" (click)="clearForm()">
+                Limpar Formulário
+                <i class="fa fa-eraser left" aria-hidden="true"></i>
+              </a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+</div> -->
 <div class="jumbotron">
+  <alert></alert>
   <h1>Upload</h1>
-  <p class="lead">Use this document as a way to quickly start any new project.
-    <br> All you get is this text and a mostly barebones HTML document.</p>
+  <form #myForm>
+
+    <div class="form-group">
+      <i class="fa fa-book" aria-hidden="true"></i>
+      <label for="inputTitle">Título do Livro</label>
+      <input type="text" class="form-control" id="inputTitle" required [(ngModel)]="book.title" [ngModelOptions]="{standalone: true}" aria-describedby="titleHelp" placeholder="Título">
+      <small id="titleHelp" class="form-text text-muted">Informar título do livro.</small>
+    </div>
+
+    <div class="form-group">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <label for="inputAuthor">Autor do Livro</label>
+      <input type="text" class="form-control" id="authorTitle" required [(ngModel)]="book.author" [ngModelOptions]="{standalone: true}" aria-describedby="authotHelp"
+        placeholder="Autor">
+      <small id="authorHelp" class="form-text text-muted">Informar autor do livro.</small>
+    </div>
+
+    <div class="form-group">
+      <i class="fa fa-barcode" aria-hidden="true"></i>
+      <label for="inputISBN">ISBN</label>
+      <input type="text" class="form-control" id="inputISBN" required [(ngModel)]="book.isbn" [ngModelOptions]="{standalone: true}" aria-describedby="isbnHelp" placeholder="ISBN">
+      <small id="isbnHelp" class="form-text text-muted">Informar ISBN.</small>
+    </div>
+
+    <div class="form-group">
+      <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+      <label for="inputFile">Livro (PDF)</label>
+      <input type="file" class="form-control-file" id="inputFile" aria-describedby="fileHelp" #fileInput value="upload" (change)="onChange($event)">
+      <small id="fileHelp" class="form-text text-muted">Selecione um arquivo.</small>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-success btn-block" (click)="uploadFile()">
+        <i class="fa fa-upload" aria-hidden="true"></i>
+        Efetuar upload
+      </button>
+      <div *ngIf="uploading">
+        <progress max="100" [value]="percentage"></progress>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block" (click)="clearForm()">
+        <i class="fa fa-eraser" aria-hidden="true">Limpar Formulário</i>
+      </button>
+    </div>
+
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+  </form>
 </div>

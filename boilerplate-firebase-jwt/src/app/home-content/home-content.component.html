@@ -1,5 +1,20 @@
 <div class="jumbotron">
   <h1>Home Content</h1>
-  <p class="lead">Use this document as a way to quickly start any new project.
-    <br> All you get is this text and a mostly barebones HTML document.</p>
+  <button type="button" class="btn btn-primary" tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+    Button with tooltip
+  </button>
+
+  <button type="button" class="btn btn-info" (click)="openModal(template)">Create template modal</button>
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      This is a modal.
+    </div>
+  </ng-template>
 </div>

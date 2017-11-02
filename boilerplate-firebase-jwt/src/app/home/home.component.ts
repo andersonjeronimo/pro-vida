@@ -11,8 +11,7 @@ import { User } from '../_models/index';
 export class HomeComponent implements OnInit {
   currentUser: any = {};
   // users: User[] = [];
-
-  constructor(private router: Router/* private userService: UserService */) {
+  constructor(private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 

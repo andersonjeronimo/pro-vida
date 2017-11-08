@@ -1,0 +1,24 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarHome" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand">Biblioteca (logado)</a>
+  <div class="collapse navbar-collapse" id="navbarHome">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/home-content']">Home Content</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/upload']">Upload</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/shelf']">Shelf</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="alert alert-success" role="alert">
+  <strong>Well done!</strong> Login efetuado com sucesso.
+</div>
+<router-outlet></router-outlet>

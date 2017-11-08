@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppRouting } from './app-routing';
 
@@ -43,7 +44,8 @@ import { AuthGuard } from './_guards/index';
     AppRouting,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   providers: [
     AuthGuard,

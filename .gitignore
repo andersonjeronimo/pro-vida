@@ -1,9 +1,14 @@
 # Node Modules #
 ###################
 /biblioteca-forebase-bass/node_modules
+
 /biblioteca-google-books-api/back-end/node_modules
 /biblioteca-google-books-api/front-end_01/node_modules
 /biblioteca-google-books-api/front-end_02/node_modules
+
+/boilerplate-firebase-jwt/node_modules
+/virtual-library/node_modules
+
 # Compiled source #
 ###################
 *.com

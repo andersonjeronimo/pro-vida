@@ -1,5 +1,6 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { Router } from '@angular/router';
 
 import { User } from '../_models/index';
 // import { UserService } from '../_services/index';
@@ -11,6 +12,8 @@ import { User } from '../_models/index';
 export class HomeComponent implements OnInit {
   currentUser: any = {};
   // users: User[] = [];
+  isNavbarCollapsed = false;
+
   constructor(private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }

@@ -1,13 +1,11 @@
 <div class="jumbotron">
   <h1>Estante Virtual</h1>
 
-  <div class="row" *ngIf="loading == false">
-    <button class="btn btn-success" (click)="listFiles()">
+  <button class="btn btn-success" (click)="listFiles()">
       <i class="fa fa-list" aria-hidden="true"></i> Listar livros
     </button>
-  </div>
 
-  <preloader *ngIf="loading"></preloader>
+    <preloader *ngIf="loading"></preloader>
 
   <ng-template #template>
     <div class="modal-header">

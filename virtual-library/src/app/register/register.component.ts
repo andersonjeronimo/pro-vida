@@ -1,22 +1,8 @@
-/* import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
-})
-export class RegisterComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-} */
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FirebaseService } from '../_services/firebase.service';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -29,8 +15,8 @@ export class RegisterComponent {
 
   constructor(
     private router: Router,
-    // private userService: UserService,
-    private authService: FirebaseService
+    private authService: FirebaseService,
+    private alertService: AlertService
   ) {}
 
   register() {
@@ -39,11 +25,11 @@ export class RegisterComponent {
       .createUserWithEmailAndPassword(this.model.email, this.model.password)
       .then(result => {
         console.log(result);
-        // this.alertService.success('Cadastro efetuado com sucesso', true);
+        this.alertService.success('Cadastro efetuado com sucesso', true);
         this.router.navigate(['/login']);
       })
       .catch(error => {
-        // this.alertService.error(error);
+        this.alertService.error(error);
         this.loading = false;
       });
 

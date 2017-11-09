@@ -1,22 +1,8 @@
-/* import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
-})
-export class LoginComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-} */
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { FirebaseService } from '../_services/firebase.service';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: FirebaseService
+    private authenticationService: FirebaseService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
@@ -47,12 +34,12 @@ export class LoginComponent implements OnInit {
     this.authenticationService
       .signInWithEmailAndPassword(this.model.email, this.model.password)
       .then(data => {
-        // this.alertService.success('Login efetuado com sucesso', true);
+        this.alertService.success('Login efetuado com sucesso', true);
         // this.loading = false;
         this.router.navigate(['/']);
       })
       .catch(error => {
-        // this.alertService.error(error);
+        this.alertService.error(error);
         this.loading = false;
       });
   }
@@ -62,12 +49,12 @@ export class LoginComponent implements OnInit {
     this.authenticationService
       .authWithGoogle()
       .then(data => {
-        // this.alertService.success('Autenticação com Google efetuada com sucesso', true);
+        this.alertService.success('Autenticação com Google efetuada com sucesso', true);
         // this.loading = false;
         this.router.navigate(['/']);
       })
       .catch(error => {
-        // this.alertService.error(error);
+        this.alertService.error(error);
         this.loading = false;
       });
   }
@@ -77,12 +64,12 @@ export class LoginComponent implements OnInit {
     this.authenticationService
       .authWithFacebook()
       .then(data => {
-        // this.alertService.success('Autenticação com Facebook efetuada com sucesso', true);
+        this.alertService.success('Autenticação com Facebook efetuada com sucesso', true);
         // this.loading = false;
         this.router.navigate(['/']);
       })
       .catch(error => {
-        // this.alertService.error(error);
+        this.alertService.error(error);
         this.loading = false;
       });
   }

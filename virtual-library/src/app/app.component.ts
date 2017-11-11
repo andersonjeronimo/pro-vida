@@ -9,5 +9,8 @@ import { AlertService } from './_services/alert.service';
 })
 export class AppComponent {
   title = 'Biblioteca Virtual';
+  // stayConnected = false;
   private message: string = null;
+
+  constructor() { }
 }

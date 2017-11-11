@@ -1,26 +1,48 @@
-<div class="container">
-  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarApp" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand">Biblioteca Virtual Rede Pró-Vida</a>
-    <div class="collapse navbar-collapse" id="navbarApp">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/login']">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/register']">Cadastro</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']">Home</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <alert></alert>
-</div>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarApp" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span>
+      <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+    </span>
+  </button>
+  <a class="navbar-brand">Biblioteca Virtual Rede Pró-Vida</a>
+  <div class="collapse navbar-collapse" id="navbarApp">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['']">
+          <i class="fa fa-home fa-3x" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']">
+          <i class="fa fa-sign-in fa-3x" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/register']">
+          <i class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
+        </a>
+      </li>
+      <!-- autenticado -->
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/upload']">
+          <i class="fa fa-upload fa-3x" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/shelf']">
+          <i class="fa fa-book fa-3x" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']">
+          <i class="fa fa-sign-out fa-3x" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<alert></alert>
 <div class="container">
   <router-outlet></router-outlet>
 </div>

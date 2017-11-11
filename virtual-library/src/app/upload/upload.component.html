@@ -1,3 +1,71 @@
-<h3>
-  upload works!
-</h3>
+<div class="jumbotron">
+  <h1>Cadastro de Livros</h1>
+  <form #myForm>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control" id="inputTitle" required [(ngModel)]="book.title" [ngModelOptions]="{standalone: true}"
+          aria-describedby="titleHelp" placeholder="Título do livro">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control" id="authorTitle" required [(ngModel)]="book.author" [ngModelOptions]="{standalone: true}"
+          aria-describedby="authotHelp" placeholder="Autor do livro">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-barcode fa-2x" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control" id="inputISBN" required [(ngModel)]="book.isbn" [ngModelOptions]="{standalone: true}"
+          aria-describedby="isbnHelp" placeholder="ISBN-10 ou ISBN-13">
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <label class="btn btn-primary btn-block" for="my-file-selector">
+          <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+          <input id="my-file-selector" type="file" style="display:none;" aria-describedby="fileHelp" #fileInput value="upload" (change)="onChange($event)">Selecione um arquivo PDF
+        </label>
+        <div *ngIf="file">
+          <div class="alert alert-success" role="alert">
+            <strong>Arquivo: </strong>{{file.name}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <button class="btn btn-success btn-block" (click)="uploadFile()">
+          <i class="fa fa-upload fa-2x" aria-hidden="true"></i>
+          Efetuar upload
+        </button>
+        <div *ngIf="uploading">
+          <progress max="100" [value]="percentage"></progress>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <button class="btn btn-danger btn-block" (click)="clearForm()">
+          <i class="fa fa-eraser fa-2x" aria-hidden="true"></i>
+          Limpar Formulário
+        </button>
+      </div>
+    </div>
+
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+  </form>
+</div>

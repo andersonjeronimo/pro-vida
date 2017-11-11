@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
+  stayConnected: boolean = false;
 
   constructor(
     private route: ActivatedRoute,

@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UploadComponent } from './upload/upload.component';
-import { HomeContentComponent } from './home-content/home-content.component';
 import { PreloaderComponent } from './_directives/preloader/preloader.component';
 
 import { AuthGuard } from './_guards/auth.guard';
@@ -27,7 +26,6 @@ import { AlertComponent } from './_directives/alert/alert.component';
     LoginComponent,
     RegisterComponent,
     UploadComponent,
-    HomeContentComponent,
     PreloaderComponent,
     AlertComponent
   ],

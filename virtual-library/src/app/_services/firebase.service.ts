@@ -42,7 +42,16 @@ export class FirebaseService {
 
   // authentication
   // estas funções são responsáveis por utilizar os métodos de auth do firebase e de setarem
-  // ... o usuário no LocalStorage
+  // ... o usuário no LocalStorage / SessionStorage
+
+  private saveCurrentUser(user: any) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
+  private removeCurrentUser() {
+    localStorage.removeItem('currentUser');
+  }
+
   authWithFacebook() {
     this.provider = new firebase.auth.FacebookAuthProvider();
     return firebase
@@ -53,7 +62,7 @@ export class FirebaseService {
         const user = data.user; // .json();
         if (user && user.refreshToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.saveCurrentUser(user);
         }
       });
       /* .catch(error => {
@@ -72,7 +81,7 @@ export class FirebaseService {
         const user = data.user; // .json();
         if (user && user.refreshToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.saveCurrentUser(user);
         }
       });
       /* .catch(error => {
@@ -84,7 +93,7 @@ export class FirebaseService {
   signOut() {
     firebase.auth().signOut();
     // remover usuário do local storage
-    localStorage.removeItem('currentUser');
+    this.removeCurrentUser();
   }
 
   createUserWithEmailAndPassword(email: string, password: string) {
@@ -102,7 +111,7 @@ export class FirebaseService {
         const user = data; // .json();
         if (user && user.refreshToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.saveCurrentUser(user);
         }
       });
       /* .catch(error => {

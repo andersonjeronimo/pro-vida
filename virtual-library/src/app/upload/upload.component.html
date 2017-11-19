@@ -35,7 +35,8 @@
       <div class="col-md-6">
         <label class="btn btn-primary btn-block" for="my-file-selector">
           <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
-          <input id="my-file-selector" type="file" style="display:none;" aria-describedby="fileHelp" #fileInput value="upload" (change)="onChange($event)">Selecione um arquivo PDF
+          <input id="my-file-selector" type="file" style="display:none;" aria-describedby="fileHelp" #fileInput value="upload" (change)="onChange($event)">
+          Selecionar PDF
         </label>
         <div *ngIf="file">
           <div class="alert alert-success" role="alert">

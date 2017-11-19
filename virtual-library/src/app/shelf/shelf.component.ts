@@ -1,23 +1,6 @@
-/* import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-shelf',
-  templateUrl: './shelf.component.html',
-  styleUrls: ['./shelf.component.css']
-})
-export class ShelfComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-} */
 import { Component, EventEmitter, OnInit, TemplateRef } from '@angular/core';
+
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
-// import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-
 import { FirebaseService } from '../_services/firebase.service';
 import { AlertService } from '../_services/alert.service';
 
@@ -31,18 +14,12 @@ export class ShelfComponent implements OnInit {
   private reference = 'books';
   private databaseBooksRef: any = null;
   private storageBooksRef: any = null;
-
   loading = false;
-
   URL: SafeResourceUrl = null;
-
-  // modal
-  // public modalRef: BsModalRef;
 
   constructor(
     private service: FirebaseService,
     private sanitizer: DomSanitizer,
-    // private modalService: BsModalService,
     private alertService: AlertService
   ) {}
 
@@ -50,10 +27,6 @@ export class ShelfComponent implements OnInit {
     this.databaseBooksRef = this.service.getDatabaseRef(this.reference);
     this.storageBooksRef = this.service.getStorageRef(this.reference);
     // this.listFiles();
-  }
-
-  private openModal(template: TemplateRef<any>) {
-    // this.modalRef = this.modalService.show(template);
   }
 
   listFiles() {
@@ -68,14 +41,9 @@ export class ShelfComponent implements OnInit {
     console.log(this.fileList);
   }
 
-  /* fileURL() {
-    if (this.URL !== "") {
-      return this.sanitizer.bypassSecurityTrustResourceUrl(this.URL);
-    }
-  } */
-
   openFile(fileName: string, template: TemplateRef<any>) {
     // Create a reference to the file we want to download
+    this.URL = null;
     this.loading = true;
     const fileRef = this.storageBooksRef.child(fileName);
 
@@ -84,7 +52,7 @@ export class ShelfComponent implements OnInit {
       .getDownloadURL()
       .then(url => {
         this.URL = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-        this.openModal(template);
+        // this.openModal(template);
         this.loading = false;
       })
       .catch(function(error) {

@@ -4,7 +4,7 @@ declare var firebase: any;
 
 @Injectable()
 export class FirebaseService {
-  private config = {
+  private setting = {
     apiKey: 'AIzaSyDxHsbWF2TW7aCC6k13uPCcscmoZ7RqDEg',
     authDomain: 'biblioteca-pro-vida.firebaseapp.com',
     databaseURL: 'https://biblioteca-pro-vida.firebaseio.com',
@@ -14,7 +14,7 @@ export class FirebaseService {
   };
   private provider: any = {};
   constructor() {
-    firebase.initializeApp(this.config);
+    firebase.initializeApp(this.setting);
   }
   // database
   getDatabaseRef(reference: string) {

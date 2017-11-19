@@ -15,6 +15,7 @@ export class ShelfComponent implements OnInit {
   private databaseBooksRef: any = null;
   private storageBooksRef: any = null;
   loading = false;
+  filter: string;
   URL: SafeResourceUrl = null;
 
   constructor(
@@ -39,6 +40,20 @@ export class ShelfComponent implements OnInit {
       this.loading = false;
     });
     console.log(this.fileList);
+  }
+
+  filterFileList() {
+    if (this.fileList.length === 0 || this.filter === undefined || this.filter.trim() === '' ) {
+      return this.fileList;
+    }
+
+    return this.fileList.filter(
+      (file) => {
+        if (file.title.toLowerCase().indexOf(this.filter.toLocaleLowerCase()) >= 0 ) {
+          return true;
+        }
+        return false;
+      });
   }
 
   openFile(fileName: string, template: TemplateRef<any>) {

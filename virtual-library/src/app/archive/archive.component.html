@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <h1>Arquivo</h1>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" [routerLink]="['/archive/books']" role="tab">
+        <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+        Livros
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" [routerLink]="['/archive/articles']" role="tab">
+        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+        Artigos
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" [routerLink]="['/archive/images']" role="tab">
+        <i class="fa fa-file-image-o fa-2x" aria-hidden="true"></i>
+        Imagens
+      </a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

@@ -11,7 +11,7 @@ import { AlertService } from '../_services/alert.service';
 })
 export class ShelfComponent implements OnInit {
   fileList: any[] = [];
-  private reference = 'books';
+  private reference = 'books'; // implementar acesso a outras referências, como 'articles', 'images', etc...
   private databaseBooksRef: any = null;
   private storageBooksRef: any = null;
   loading = false;
@@ -46,10 +46,9 @@ export class ShelfComponent implements OnInit {
     if (this.fileList.length === 0 || this.filter === undefined || this.filter.trim() === '' ) {
       return this.fileList;
     }
-
     return this.fileList.filter(
       (file) => {
-        if (file.title.toLowerCase().indexOf(this.filter.toLocaleLowerCase()) >= 0 ) {
+        if (file.title.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 ) {
           return true;
         }
         return false;

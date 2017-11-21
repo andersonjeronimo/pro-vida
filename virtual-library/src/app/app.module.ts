@@ -12,11 +12,16 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UploadComponent } from './upload/upload.component';
 import { PreloaderComponent } from './_directives/preloader/preloader.component';
+import { AlertComponent } from './_directives/alert/alert.component';
+
+import { ImagesComponent } from './archive/images/images.component';
+import { ArticlesComponent } from './archive/articles/articles.component';
+import { BooksComponent } from './archive/books/books.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 import { FirebaseService } from './_services/firebase.service';
 import { AlertService } from './_services/alert.service';
-import { AlertComponent } from './_directives/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,11 @@ import { AlertComponent } from './_directives/alert/alert.component';
     RegisterComponent,
     UploadComponent,
     PreloaderComponent,
-    AlertComponent
+    AlertComponent,
+    ArchiveComponent,
+    BooksComponent,
+    ArticlesComponent,
+    ImagesComponent
   ],
   imports: [
     BrowserModule,

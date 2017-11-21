@@ -1,19 +1,3 @@
-/* import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.css']
-})
-export class UploadComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-} */
-
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { Book } from '../_models/book.model';
@@ -38,6 +22,7 @@ export class UploadComponent implements OnInit {
   private task: any = null;
 
   book: Book = new Book(null, null, null, null, null, null);
+  // criar model para artigo e imagem
 
   constructor(private firebase: FirebaseService) {}
 

@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { AppRouting } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { ShelfComponent } from './shelf/shelf.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -26,7 +25,6 @@ import { AlertService } from './_services/alert.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ShelfComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,

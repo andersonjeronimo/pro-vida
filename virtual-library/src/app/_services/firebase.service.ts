@@ -20,8 +20,7 @@ export class FirebaseService {
   getDatabaseRef(reference: string) {
     return firebase
       .database()
-      .ref(reference)
-      .orderByKey();
+      .ref(reference);
   }
 
   getDatabaseChildRef(reference: string) {

@@ -9,23 +9,23 @@
   <div class="collapse navbar-collapse" id="navbarApp">
     <ul class="navbar-nav">
       <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Início">
-        <a class="nav-link" [routerLink]="['']">
+        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">
           <i class="fa fa-home fa-3x" aria-hidden="true"></i>
         </a>
       </li>
       <!-- autenticado -->
       <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Upload">
-        <a class="nav-link" [routerLink]="['/upload']">
+        <a class="nav-link" [routerLink]="['/upload']" [routerLinkActive]="['active']">
           <i class="fa fa-cloud-upload fa-3x" aria-hidden="true"></i>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Arquivo">
-        <a class="nav-link" [routerLink]="['/archive']">
+        <a class="nav-link" [routerLink]="['/archive']" [routerLinkActive]="['active']">
           <i class="fa fa-archive fa-3x" aria-hidden="true"></i>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Sair">
-        <a class="nav-link" [routerLink]="['/login']">
+        <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">
           <i class="fa fa-sign-out fa-3x" aria-hidden="true"></i>
         </a>
       </li>

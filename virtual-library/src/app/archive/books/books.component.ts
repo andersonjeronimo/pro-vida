@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, OnInit, TemplateRef } from "@angular/core";
 
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FirebaseService } from '../../_services/firebase.service';
@@ -48,37 +48,81 @@ export class BooksComponent implements OnInit {
     this.databaseBooksRef.once('value').then(snapshot => {
       numChildren = snapshot.numChildren();
       pages = numChildren / this.pageSize;
+      hasLastPage = numChildren % this.pageSize === 0 ? false : true;
+      pages += hasLastPage ? 1 : 0;
       for (let i = 1; i <= pages; i++) {
         this.numOfPages.push(i);
       }
-
-      hasLastPage = numChildren % this.pageSize > 0 ? true : false;
-      if (hasLastPage) {
-        this.numOfPages.push(this.numOfPages.length);
-      }
-
     });
   }
 
-  // TO DO...
-  goToPage(page: number) {
-    this.currentPage = page;
-    // trabalhar com os valores firstItemKey e lastItemKey...
-    // ...e com os métodos do firebase
+  goToPage(targetPage: number) {
+    if (targetPage !== this.currentPage) {
+      if (targetPage < this.currentPage) {
+        this.listPreviousPage();
+      } else {
+        this.listNextPage();
+      }
+      this.currentPage = targetPage;
+    }
   }
 
   previousPage() {
+    let targetPage: number;
     if (this.currentPage > 1) {
-      this.currentPage -= 1;
-      this.goToPage(this.currentPage);
+      targetPage = this.currentPage - 1;
+      this.goToPage(targetPage);
     }
   }
 
   nextPage() {
+    let targetPage: number;
     if (this.currentPage < this.numOfPages.length) {
-      this.currentPage += 1;
-      this.goToPage(this.currentPage);
+      targetPage = this.currentPage + 1;
+      this.goToPage(targetPage);
     }
+  }
+
+  listPreviousPage() {
+    this.loading = true;
+    this.databaseBooksRef
+      .orderByChild(this.childKey)
+      .endAt(this.firstItemKey)
+      .limitToLast(this.pageSize + 1)
+      .once('value')
+      .then(snapshot => {
+        this.fileList = [];
+        snapshot.forEach(childSnapshot => {
+          this.fileList.push(childSnapshot.val());
+        });
+        this.loading = false;
+        this.fileList.pop(); // não há mais necessidade da referência
+        this.firstItemKey = this.fileList[0][this.childKey];
+        this.lastItemKey = this.fileList[this.fileList.length - 1][
+          this.childKey
+        ];
+      });
+  }
+
+  listNextPage() {
+    this.loading = true;
+    this.databaseBooksRef
+      .orderByChild(this.childKey)
+      .startAt(this.lastItemKey)
+      .limitToFirst(this.pageSize + 1)
+      .once('value')
+      .then(snapshot => {
+        this.fileList = [];
+        snapshot.forEach(childSnapshot => {
+          this.fileList.push(childSnapshot.val());
+        });
+        this.loading = false;
+        this.fileList.shift(); // não há mais necessidade da referência
+        this.firstItemKey = this.fileList[0][this.childKey];
+        this.lastItemKey = this.fileList[this.fileList.length - 1][
+          this.childKey
+        ];
+      });
   }
 
   listFirstPage() {
@@ -94,61 +138,11 @@ export class BooksComponent implements OnInit {
         });
         this.loading = false;
         this.firstItemKey = this.fileList[0][this.childKey];
-        this.lastItemKey = this.fileList[this.fileList.length - 1][this.childKey];
+        this.lastItemKey = this.fileList[this.fileList.length - 1][
+          this.childKey
+        ];
         this.currentPage = 1;
       });
-
-    /*
-  1ª pág.:
-  ---------------------
-  var currentPage = 1
-  var pageSize = 3 (exemplo)
-  var [f]irstItem;
-  var [l]astItem;
-
-  .orderByChild('title')
-  .limitToFirst(pageSize); (3)
-
-  [f]---[l]
-  [a, b, c, d, e, f, g]
-
-  firstItem = a.title;
-  lastItem = c.title;
-
-  2ª pág. em diante (avançando página >>):
-  ---------------------
-  var pageSize = 3 (exemplo)
-  var [f]irstItem;
-  var [l]astItem;
-
-  .orderByChild('title')
-  .startAt( lastItem* ) *título do ÚLTIMO livro da página atual
-  .limitToFirst(pageSize);
-
-        [f]---[l]
-  [a, b, c, d, e, f, g]
-
-  firstItem = lastItem;
-  lastItem = e.title;
-  currentPage += 1;
-
-  2ª pág. em diante (voltando página <<):
-  ---------------------
-  var pageSize = 3 (exemplo)
-  var [f]irstItem;
-  var [l]astItem;
-
-  .orderByChild('title')
-  .endAt( firstItem* ) *título do PRIMEIRO livro da página atual
-  .limitToLast(pageSize);
-
-  [f]---[l]
-  [a, b, c, d, e, f, g]
-
-  lastItem = firstItem;
-  firstItem = a.title;
-
-  */
   }
 
   listFiles() {

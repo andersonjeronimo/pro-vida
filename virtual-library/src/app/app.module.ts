@@ -21,6 +21,9 @@ import { ArchiveComponent } from './archive/archive.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { FirebaseService } from './_services/firebase.service';
 import { AlertService } from './_services/alert.service';
+import { ImagesUploadComponent } from './upload/images-upload/images-upload.component';
+import { BooksUploadComponent } from './upload/books-upload/books-upload.component';
+import { ArticlesUploadComponent } from './upload/articles-upload/articles-upload.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { AlertService } from './_services/alert.service';
     ArchiveComponent,
     BooksComponent,
     ArticlesComponent,
-    ImagesComponent
+    ImagesComponent,
+    ImagesUploadComponent,
+    BooksUploadComponent,
+    ArticlesUploadComponent
   ],
   imports: [
     BrowserModule,

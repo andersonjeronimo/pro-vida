@@ -11,11 +11,20 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UploadComponent } from './upload/upload.component';
+import { BooksUploadComponent } from 'app/upload/books-upload/books-upload.component';
+import { ArticlesUploadComponent } from 'app/upload/articles-upload/articles-upload.component';
+import { ImagesUploadComponent } from 'app/upload/images-upload/images-upload.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] },
+  { path: 'upload', component: UploadComponent,
+    children: [
+      { path: 'books', component: BooksUploadComponent, canActivate: [AuthGuard] },
+      { path: 'articles', component: ArticlesUploadComponent, canActivate: [AuthGuard] },
+      { path: 'images', component: ImagesUploadComponent, canActivate: [AuthGuard] }
+    ], canActivate: [AuthGuard]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'archive', component: ArchiveComponent,

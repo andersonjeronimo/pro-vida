@@ -1,6 +1,4 @@
 <div class="jumbotron">
-  <h2>Livros disponíveis</h2>
-
   <form>
     <div class="form-group">
       <div class="input-group">
@@ -13,7 +11,7 @@
     </div>
   </form>
 
-  <div class="row justify-content-center">
+  <!-- <div class="row justify-content-center">
     <div class="col-md-6">
       <button class="btn btn-primary btn-block" (click)="listFiles()">
         <i class="fa fa-list fa-2x" aria-hidden="true"></i>
@@ -21,8 +19,9 @@
       </button>
     </div>
   </div>
-  <br>
-  <preloader *ngIf="loading"></preloader>
+  <br> -->
+
+  <!-- <preloader *ngIf="loading"></preloader> -->
 
   <div id="accordion" role="tablist" aria-multiselectable="true">
     <div class="card">
@@ -89,9 +88,6 @@
     </div>
   </div>
 
-  <h3>Página atual = {{currentPage}}</h3>
-  <br>
-
   <div class="row justify-content-center">
     <nav>
       <ul class="pagination pagination-lg">
@@ -101,10 +97,8 @@
           </a>
         </li>
 
-        <li class="page-item" *ngFor="let item of numOfPages; let i = index" [attr.data-index]="i" >
-          <a class="page-link" (click)="goToPage(i + 1)">
-            {{i + 1}}
-          </a>
+        <li class="page-item" [class.active]="i === (currentPage-1)" *ngFor="let item of numOfPages; let i = index" [attr.data-index]="i">
+          <a class="page-link">{{i + 1}}</a>
         </li>
 
         <li class="page-item">

@@ -1,113 +1,83 @@
 <div class="jumbotron">
-  <form>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon">
-          <i class="fa fa-search fa-2x" aria-hidden="true"></i>
-        </span>
-        <input type="text" class="form-control" id="inputSearch" required [(ngModel)]="filter" [ngModelOptions]="{standalone: true}"
-          aria-describedby="titleHelp" placeholder="Filtrar lista de livros">
-      </div>
-    </div>
-  </form>
-
-  <!-- <div class="row justify-content-center">
-    <div class="col-md-6">
-      <button class="btn btn-primary btn-block" (click)="listFiles()">
-        <i class="fa fa-list fa-2x" aria-hidden="true"></i>
-        Listar livros
-      </button>
-    </div>
-  </div>
-  <br> -->
-
-  <!-- <preloader *ngIf="loading"></preloader> -->
-
-  <div id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="card">
-      <div class="card-header" role="tab" id="headingOne">
-        <h5 class="mb-0">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <i class="fa fa-eye fa-2x" aria-hidden="true"></i>
-            Ler
-          </a>
-        </h5>
-      </div>
-
-      <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-        <div class="card-block">
-          <div *ngIf="URL">
-            <object [data]='URL' type="application/pdf" width="100%" height="800"></object>
-          </div>
+  <div *ngIf="!reading">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+          </span>
+          <input type="text" class="form-control" id="inputSearch" required [(ngModel)]="filter" [ngModelOptions]="{standalone: true}"
+            aria-describedby="titleHelp" placeholder="Filtrar livros">
         </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-header" role="tab" id="headingTwo">
-        <h5 class="mb-0">
-          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <i class="fa fa-list-alt fa-2x" aria-hidden="true"></i>
-            Lista
-          </a>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-        <div class="card-block">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>ISBN</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let file of filterFileList()">
-                <td>{{file.title}}</td>
-                <td>{{file.author}}</td>
-                <td>{{file.isbn}}</td>
-                <td>
-                  <button [disabled]="loading" class="btn btn-primary" (click)="openFile(file.fileName, template)">
-                    <i class="fa fa-book" aria-hidden="true"></i> Abrir livro
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>ISBN</th>
-                <th>Ações</th>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+    </form>
 
-  <div class="row justify-content-center">
-    <nav>
-      <ul class="pagination pagination-lg">
-      <li class="page-item">
-          <a class="page-link" (click)="previousPage()">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-md-4">Título</th>
+          <th class="col-md-4">Autor</th>
+          <th class="col-md-2">ISBN</th>
+          <th class="col-md-2"></th>
+        </tr>
+      </thead>
+      <preloader *ngIf="loading"></preloader>
+      <tbody>
+        <tr *ngFor="let file of filterFileList()">
+          <td class="col-md-4">{{file.title}}</td>
+          <td class="col-md-4">{{file.author}}</td>
+          <td class="col-md-2">{{file.isbn}}</td>
+          <td class="col-md-2">
+            <button [disabled]="loading" class="btn btn-primary" (click)="openFile(file.fileName)">
+              <i class="fa fa-book" aria-hidden="true"></i> Ler
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>ISBN</th>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="row justify-content-center">
+      <nav>
+        <ul class="pagination pagination-lg">
+          <li class="page-item">
+            <a class="page-link" (click)="previousPage()">
               <i class="fa fa-chevron-left" aria-hidden="true"></i>
-          </a>
-        </li>
-
-        <li class="page-item" [class.active]="i === (currentPage-1)" *ngFor="let item of numOfPages; let i = index" [attr.data-index]="i">
-          <a class="page-link">{{i + 1}}</a>
-        </li>
-
-        <li class="page-item">
-          <a class="page-link" (click)="nextPage()">
+            </a>
+          </li>
+          <li class="page-item" [class.active]="i === (currentPage-1)" *ngFor="let item of numOfPages; let i = index" [attr.data-index]="i">
+            <a class="page-link">{{i + 1}}</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" (click)="nextPage()">
               <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div *ngIf="reading">
+    <ul class="nav">
+      <li class="nav-item">
+        <button class="btn btn-secondary" (click)="closeFile()">
+          <i class="fa fa-close" aria-hidden="true"></i>
+          Fechar
+        </button>
+    </ul>
+
+    <preloader *ngIf="loading"></preloader>
+
+    <object [data]='URL' type="application/pdf" width="100%" height="800"></object>
+
   </div>
 
 </div>

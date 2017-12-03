@@ -9,21 +9,22 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UploadComponent } from './upload/upload.component';
 import { PreloaderComponent } from './_directives/preloader/preloader.component';
 import { AlertComponent } from './_directives/alert/alert.component';
 
-import { ImagesComponent } from './archive/images/images.component';
+import { UploadComponent } from './upload/upload.component';
+import { BooksUploadComponent } from './upload/books-upload/books-upload.component';
+import { ArticlesUploadComponent } from './upload/articles-upload/articles-upload.component';
+
+import { ArchiveComponent } from './archive/archive.component';
 import { ArticlesComponent } from './archive/articles/articles.component';
 import { BooksComponent } from './archive/books/books.component';
-import { ArchiveComponent } from './archive/archive.component';
+import { VideosComponent } from './archive/videos/videos.component';
+import { PhotosComponent } from './archive/photos/photos.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 import { FirebaseService } from './_services/firebase.service';
 import { AlertService } from './_services/alert.service';
-import { ImagesUploadComponent } from './upload/images-upload/images-upload.component';
-import { BooksUploadComponent } from './upload/books-upload/books-upload.component';
-import { ArticlesUploadComponent } from './upload/articles-upload/articles-upload.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +38,10 @@ import { ArticlesUploadComponent } from './upload/articles-upload/articles-uploa
     ArchiveComponent,
     BooksComponent,
     ArticlesComponent,
-    ImagesComponent,
-    ImagesUploadComponent,
     BooksUploadComponent,
-    ArticlesUploadComponent
+    ArticlesUploadComponent,
+    VideosComponent,
+    PhotosComponent
   ],
   imports: [
     BrowserModule,

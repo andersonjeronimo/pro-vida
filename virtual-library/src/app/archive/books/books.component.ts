@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, TemplateRef } from "@angular/core";
+import { Component, EventEmitter, OnInit } from '@angular/core';
 
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FirebaseService } from '../../_services/firebase.service';
@@ -15,16 +15,17 @@ export class BooksComponent implements OnInit {
   private databaseBooksRef: any = null;
   private storageBooksRef: any = null;
   loading = false;
+  reading = false;
   filter: string;
   URL: SafeResourceUrl = null;
 
   // paginação
   numOfPages: number[] = [];
-  currentPage: number = 1;
-  pageSize: number = 3; // hardcoded...modificar
+  currentPage = 1;
+  pageSize = 5; // hardcoded...modificar
   private firstItemKey: string;
   private lastItemKey: string;
-  childKey: string = 'title'; // orderByChild('childKey') hardcoded...modificar
+  childKey = 'title'; // orderByChild('childKey') hardcoded...modificar
   // END_OF paginação
 
   constructor(
@@ -43,7 +44,7 @@ export class BooksComponent implements OnInit {
   private createRange() {
     let numChildren: number;
     let pages: number;
-    let hasLastPage: boolean = false;
+    let hasLastPage = false;
     this.numOfPages = [];
     this.databaseBooksRef.once('value').then(snapshot => {
       numChildren = snapshot.numChildren();
@@ -173,9 +174,15 @@ export class BooksComponent implements OnInit {
     });
   }
 
-  openFile(fileName: string, template: TemplateRef<any>) {
+  closeFile() {
+    this.reading = false;
+    this.URL = false;
+  }
+
+  openFile(fileName: string) {
     // Create a reference to the file we want to download
     this.URL = null;
+    this.reading = true;
     this.loading = true;
     const fileRef = this.storageBooksRef.child(fileName);
 

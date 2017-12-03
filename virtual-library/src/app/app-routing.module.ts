@@ -1,7 +1,3 @@
-import { BooksComponent } from './archive/books/books.component';
-import { ArticlesComponent } from './archive/articles/articles.component';
-import { ImagesComponent } from './archive/images/images.component';
-import { ArchiveComponent } from './archive/archive.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -13,7 +9,12 @@ import { RegisterComponent } from './register/register.component';
 import { UploadComponent } from './upload/upload.component';
 import { BooksUploadComponent } from 'app/upload/books-upload/books-upload.component';
 import { ArticlesUploadComponent } from 'app/upload/articles-upload/articles-upload.component';
-import { ImagesUploadComponent } from 'app/upload/images-upload/images-upload.component';
+
+import { VideosComponent } from './archive/videos/videos.component';
+import { PhotosComponent } from './archive/photos/photos.component';
+import { BooksComponent } from './archive/books/books.component';
+import { ArticlesComponent } from './archive/articles/articles.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,8 +22,7 @@ const appRoutes: Routes = [
   { path: 'upload', component: UploadComponent,
     children: [
       { path: 'books', component: BooksUploadComponent, canActivate: [AuthGuard] },
-      { path: 'articles', component: ArticlesUploadComponent, canActivate: [AuthGuard] },
-      { path: 'images', component: ImagesUploadComponent, canActivate: [AuthGuard] }
+      { path: 'articles', component: ArticlesUploadComponent, canActivate: [AuthGuard] }
     ], canActivate: [AuthGuard]
   },
   { path: 'login', component: LoginComponent },
@@ -31,7 +31,8 @@ const appRoutes: Routes = [
     children: [
       { path: 'books', component: BooksComponent, canActivate: [AuthGuard] },
       { path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard] },
-      { path: 'images', component: ImagesComponent, canActivate: [AuthGuard] }
+      { path: 'videos', component: VideosComponent, canActivate: [AuthGuard] },
+      { path: 'photos', component: PhotosComponent, canActivate: [AuthGuard] }
     ], canActivate: [AuthGuard]
   },
   // otherwise redirect to home

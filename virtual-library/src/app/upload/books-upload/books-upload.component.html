@@ -1,74 +1,70 @@
 <div class="jumbotron">
 
-  <form #myForm>
-    <div class="form-group">
+  {{selectedIsbnPattern}}
+
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="form-group" [ngClass]="verificaCSS('title') ? 'has-success' : 'has-danger'">
       <div class="input-group">
         <span class="input-group-addon">
           <i class="fa fa-book fa-2x" aria-hidden="true"></i>
         </span>
-        <input type="text" class="form-control" id="inputTitle" required [(ngModel)]="book.title" [ngModelOptions]="{standalone: true}"
-          aria-describedby="titleHelp" placeholder="Título do livro">
+        <input type="text" class="form-control" formControlName="title" [ngClass]="verificaCSS('title') ? 'form-control-success' : 'form-control-danger'"
+          placeholder="Título do livro">
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [ngClass]="verificaCSS('author') ? 'has-success' : 'has-danger'">
       <div class="input-group">
         <span class="input-group-addon">
           <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
         </span>
-        <input type="text" class="form-control" id="authorTitle" required [(ngModel)]="book.author" [ngModelOptions]="{standalone: true}"
-          aria-describedby="authotHelp" placeholder="Autor do livro">
+        <input type="text" class="form-control" formControlName="author" [ngClass]="verificaCSS('author') ? 'form-control-success' : 'form-control-danger'"
+          placeholder="Autor do livro">
       </div>
     </div>
-
-    <div class="form-group">
+    <div class="form-group" [ngClass]="verificaCSS('isbn') ? 'has-success' : 'has-danger'">
       <div class="input-group">
         <span class="input-group-addon">
           <i class="fa fa-barcode fa-2x" aria-hidden="true"></i>
         </span>
-        <input type="text" class="form-control" id="inputISBN" required [(ngModel)]="book.isbn" [ngModelOptions]="{standalone: true}"
-          aria-describedby="isbnHelp" placeholder="ISBN-10 ou ISBN-13">
+        <input type="text" class="form-control" [ngClass]="verificaCSS('isbn') ? 'form-control-success' : 'form-control-danger'"
+          formControlName="isbn" placeholder="ISBN-10 ou ISBN-13">
       </div>
     </div>
+    <div class="form-group">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <label class="btn btn-primary btn-block" for="my-file-selector">
+            <i class="fa fa-file-pdf fa-2x" aria-hidden="true"></i>
+            <input id="my-file-selector" type="file" style="display:none;" accept=".pdf" #fileInput value="upload" (change)="onChange($event)"> Selecionar PDF
+          </label>
 
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <label class="btn btn-primary btn-block" for="my-file-selector">
-          <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
-          <input id="my-file-selector" type="file" style="display:none;" aria-describedby="fileHelp" #fileInput value="upload" (change)="onChange($event)"> Selecionar PDF
-        </label>
-        <div *ngIf="file">
-          <div class="alert alert-success" role="alert">
-            <strong>Arquivo: </strong>{{file.name}}
+          <div *ngIf="file">
+            <div class="alert alert-success" role="alert">
+              <strong>Arquivo: </strong>{{file.name}}
+            </div>
           </div>
+
         </div>
       </div>
     </div>
-    <br>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <button class="btn btn-success btn-block" (click)="uploadFile()">
-          <i class="fa fa-upload fa-2x" aria-hidden="true"></i>
-          Efetuar upload
-        </button>
-        <div *ngIf="uploading">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="height: 20px;" [style.width]="percentage + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="form-group">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <button class="btn btn-success btn-block" type="submit">
+            <i class="fas fa-upload fa-2x" aria-hidden="true"></i>
+            Efetuar upload
+          </button>
+
+          <div *ngIf="uploading">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="height: 20px;" [style.width]="percentage + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
-          <!-- <progress max="100" [value]="percentage"></progress> -->
+
         </div>
       </div>
     </div>
-    <br>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <button class="btn btn-danger btn-block" (click)="clearForm()">
-          <i class="fa fa-eraser fa-2x" aria-hidden="true"></i>
-          Limpar Formulário
-        </button>
-      </div>
-    </div>
-
-    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
   </form>
+
 </div>

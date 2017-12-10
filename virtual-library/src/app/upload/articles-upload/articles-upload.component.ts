@@ -1,18 +1,3 @@
-/* import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-articles-upload',
-  templateUrl: './articles-upload.component.html',
-  styleUrls: ['./articles-upload.component.css']
-})
-export class ArticlesUploadComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-} */
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { Book } from '../../_models/book.model';

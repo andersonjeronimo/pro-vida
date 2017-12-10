@@ -1,45 +1,38 @@
 <div class="jumbotron">
   <h1>Cadastro</h1>
-  <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
 
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+    <div class="form-group" [ngClass]="verificaCSS('email') ? 'has-success' : 'has-danger'">
       <div class="input-group">
         <span class="input-group-addon">
-          <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+          <i class="fas fa-at fa-2x" aria-hidden="true"></i>
         </span>
-        <input type="email" class="form-control" placeholder="email" name="username" [(ngModel)]="model.email" #email="ngModel" required
-        />
+        <input type="email" class="form-control" [ngClass]="verificaCSS('email') ? 'form-control-success' : 'form-control-danger'" placeholder="Informar email válido" formControlName="email">
       </div>
-      <div *ngIf="f.submitted && !email.valid" class="help-block">Campo obrigatório</div>
+    </div>
+    <div class="form-group" [ngClass]="verificaCSS('password1') ? 'has-success' : 'has-danger'">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fas fa-key fa-2x" aria-hidden="true"></i>
+        </span>
+        <input type="password" class="form-control" [ngClass]="verificaCSS('password1') ? 'form-control-success' : 'form-control-danger'" placeholder="Informar senha" formControlName="password1">
+      </div>
     </div>
 
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+    <div class="form-group" [ngClass]="verificaCSS('password2') ? 'has-success' : 'has-danger'">
       <div class="input-group">
         <span class="input-group-addon">
-          <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
+          <i class="fas fa-key fa-2x" aria-hidden="true"></i>
         </span>
-        <input type="password" class="form-control" placeholder="senha" name="password1" [(ngModel)]="model.password1" #password1="ngModel"
-          required />
+        <input type="password" class="form-control" [ngClass]="verificaCSS('password2') ? 'form-control-success' : 'form-control-danger'" placeholder="Repetir senha" formControlName="password2">
       </div>
-      <div *ngIf="f.submitted && !password.valid" class="help-block">Campo obrigatório</div>
-    </div>
-
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-      <div class="input-group">
-        <span class="input-group-addon">
-          <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
-        </span>
-        <input type="password" class="form-control" placeholder="repetir senha" name="password2" [(ngModel)]="model.password2" #password2="ngModel"
-          required />
-      </div>
-      <div *ngIf="f.submitted && !password.valid" class="help-block">Campo obrigatório</div>
     </div>
 
     <div class="form-group">
       <div class="row justify-content-center" data-toggle="tooltip" title="Cadastrar">
         <div class="col-md-6">
-          <button [disabled]="loading" class="btn btn-success btn-block">
-            <i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i>
+          <button [disabled]="loading" type="submit" class="btn btn-success btn-block">
+            <i class="far fa-save fa-2x" aria-hidden="true"></i>
             Cadastrar
           </button>
           <preloader *ngIf="loading"></preloader>

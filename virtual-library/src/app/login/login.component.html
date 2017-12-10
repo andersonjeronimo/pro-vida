@@ -1,36 +1,31 @@
 <div class="jumbotron">
   <h1>Login</h1>
-  <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+    <div class="form-group" [ngClass]="verificaCSS('email') ? 'has-success' : 'has-danger'">
       <div class="input-group">
         <span class="input-group-addon">
-          <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+          <i class="fas fa-at fa-2x" aria-hidden="true"></i>
         </span>
-        <input type="email" class="form-control" placeholder="email" name="email" [(ngModel)]="model.email" #email="ngModel" required
-        />
+        <input type="email" class="form-control" [ngClass]="verificaCSS('email') ? 'form-control-success' : 'form-control-danger'" placeholder="Informar e-mail" formControlName="email">
       </div>
-      <div *ngIf="f.submitted && !email.valid" class="help-block">Informar email</div>
     </div>
-
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+    <div class="form-group" [ngClass]="verificaCSS('password') ? 'has-success' : 'has-danger'">
       <div class="input-group">
         <span class="input-group-addon">
-          <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
+          <i class="fas fa-key fa-2x" aria-hidden="true"></i>
         </span>
-        <input type="password" class="form-control" placeholder="senha" name="password" [(ngModel)]="model.password" #password="ngModel"
-          required />
+        <input type="password" class="form-control" [ngClass]="verificaCSS('password') ? 'form-control-success' : 'form-control-danger'" placeholder="Informar senha (mínimo 6 caracteres)" formControlName="password">
       </div>
-      <div *ngIf="f.submitted && !password.valid" class="help-block">Informar senha</div>
     </div>
 
     <div class="form-group">
-      <input type="checkbox" [(ngModel)]="stayConnected" name="stayConnected" /> Mantenha-me conectado
+      <input type="checkbox" name="stayConnected"> Mantenha-me conectado
     </div>
 
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <button [disabled]="loading" class="btn btn-success btn-block">
-          <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+        <button [disabled]="loading" type="submit" class="btn btn-success btn-block">
+          <i class="fa fa-sign-in-alt fa-2x" aria-hidden="true"></i>
           Entrar
         </button>
         <preloader *ngIf="loading"></preloader>
@@ -51,7 +46,7 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <button type="button" class="btn btn-danger btn-block" (click)="authWithGoogle()">
-        <i class="fa fa-google fa-2x" aria-hidden="true"></i>
+        <i class="fab fa-google fa-2x" aria-hidden="true"></i>
         Entrar com Google
       </button>
     </div>
@@ -60,7 +55,7 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <button type="button" class="btn btn-primary btn-block" (click)="authWithFacebook()">
-        <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+        <i class="fab fa-facebook fa-2x" aria-hidden="true"></i>
         Entrar com Facebook
       </button>
     </div>
